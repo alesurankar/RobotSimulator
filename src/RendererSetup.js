@@ -23,7 +23,6 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(w, h);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.physicallyCorrectLights = true;
 
 export const Renderer = renderer;
 export const Camera = camera;

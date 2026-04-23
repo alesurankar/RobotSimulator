@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { SkyBox } from "../visuals/skyBox.js";
-import { loadEntities } from "../utils/loadEntities.js"
 
 
 export class BaseScene 
@@ -13,19 +12,22 @@ export class BaseScene
 
     this.SIZE_SCALE = 1;
     
-    this.near = 1;
-    this.far = 200;
-    this.cameraSettings = { near: this.near,far: this.far };
+    this.cameraSettings = {
+      pos: { x: 0, y: 0, z: 10 },
+      lookAt: { x: 0, y: 0, z: 0 },
+      fov: 60,
+      near: 1,
+      far: 1000
+    };
     this.scene = scene;
     this.scene.background = SkyBox.Load(skyBoxName);
     this.camera = camera;
     this.player = player;
-    this.focus = focus;
     this.objects = [];
     this.objectMap = {};
   }
 
-  async Init() 
+  Init() 
   {
     if (!this.active) return;
 

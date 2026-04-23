@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { BaseScene } from "./baseScene.js"
-import { Link } from "../models/link";
-import { Joint } from "../models/joint";
+import { Link } from "../models/link.js";
+import { Joint } from "../models/joint.js";
 
 
 export class TestScene extends BaseScene
@@ -9,7 +9,11 @@ export class TestScene extends BaseScene
   constructor(scene, camera, player) 
   {  
     super(scene, camera, player);
-    this.cameraSettings = { near: this.near, far: this.far };
+    this.cameraSettings = {
+      pos: { x: -1000, y: 1000, z: 1000 },
+      lookAt: { x: 0, y: 0, z: 0 },
+      fov: 40
+    };
   }
 
   CreateObjects()
