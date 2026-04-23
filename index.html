@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Systems</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+        "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+      }
+    }
+    </script>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div id="ui">
+      <button id="lockIn">🔒 Lock In</button>
+      <label>
+        Time Scale
+        <input id="timeScale" type="range" min="1" max="1000" value="1">
+      </label>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
