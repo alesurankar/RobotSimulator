@@ -1,55 +1,92 @@
 import * as THREE from "three";
-import { Link } from "../models/link.js";
-import { Joint } from "../models/joint.js";
+import { Limb } from "../models/limb.js";
 
 export class Robot
 {
-  constructor({ segments = 3 } = {}) 
+  constructor()
   {
     this.root = new THREE.Group();
+    
+    this.torso = new Limb({
+      segments: 2,
+      segmentLength: 5,
+      parent: this.root
+    });
 
-    this.links = [];
-    this.joints = [];
+    // ===== LEFT ARM =====
+    this.leftArm = new Limb({
+      segments: 3,
+      segmentLength: 3,
+      parent: this.torso.joints[1].pivot,
+      rotation: new THREE.Euler(0, 0, -Math.PI/2),
+      position: new THREE.Vector3(1, 0, 0) 
+    });
 
-    let parent = this.root;
+    // ===== RIGHT ARM =====
+    this.rightArm = new Limb({
+      segments: 3,
+      segmentLength: 3,
+      parent: this.torso.joints[1].pivot,
+      rotation: new THREE.Euler(0.5, 0, Math.PI/2),
+      position: new THREE.Vector3(-1, 0, 0)
+    });
 
-    for (let i = 0; i < segments; i++) {
+    // ===== LEFT LEG =====
+    this.leftLeg = new Limb({
+      segments: 3,
+      segmentLength: 4,
+      parent: this.torso.root,
+      axis: new THREE.Vector3(0, 0, -1),
+      rotation: new THREE.Euler(0.5, 0, -4*Math.PI/5),
+      position: new THREE.Vector3(1, 0, 0) 
+    });
 
-      // JOINT
-      const joint = new Joint({ parent });
-      this.joints.push(joint);
-
-      // LINK
-      const link = new Link({ parent: joint.pivot });
-      this.links.push(link);
-
-      // move joint to end of link
-      joint.pivot.position.y = 5;
-
-      parent = link.objectRoot;
-    }
+    // ===== RIGHT LEG =====
+    this.rightLeg = new Limb({
+      segments: 3,
+      segmentLength: 4,
+      parent: this.torso.root,
+      axis: new THREE.Vector3(0, 0, -1),
+      rotation: new THREE.Euler(0, 0, 4*Math.PI/5),
+      position: new THREE.Vector3(-1, 0, 0)
+    });
   }
 
-  Update(dt) 
+  Update(dt)
   {
     const t = performance.now() * 0.001;
 
-    for (let i = 0; i < this.joints.length; i++) {
-      const phase = i * 0.8;
+    // arms swing opposite
+    this.leftArm.Update(dt, (i, t) =>
+      Math.sin(t * 2 + i * 0.5) * 0.6
+    );
 
-      const freq = 1 + i * 0.3;
-      const amp = 0.5 + i * 0.2;
+    this.rightArm.Update(dt, (i, t) =>
+      Math.sin(t * 2 + Math.PI + i * 0.5) * 0.6
+    );
 
-      const angle = Math.sin(t * freq + phase) * amp;
+    // legs opposite to arms
+    this.leftLeg.Update(dt, (i, t) =>
+      Math.sin(t * 2 + Math.PI + i * 0.6) * 0.3
+    );
 
-      this.joints[i].setRotation(angle);
-    }
+    this.rightLeg.Update(dt, (i, t) =>
+      Math.sin(t * 2 + i * 0.6) * 0.3
+    );
+
+    // torso subtle sway
+    this.torso.Update(dt, (i, t) =>
+      Math.sin(t) * 0.1
+    );
   }
 
-  Dispose() 
+  Dispose()
   {
-    this.links.forEach(l => l?.Dispose());
-    this.joints.forEach(j => j?.Dispose());
+    this.torso.Dispose();
+    this.leftArm.Dispose();
+    this.rightArm.Dispose();
+    this.leftLeg.Dispose();
+    this.rightLeg.Dispose();
 
     this.root.removeFromParent();
   }

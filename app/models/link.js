@@ -2,17 +2,25 @@ import * as THREE from "three";
 
 export class Link
 {
-  constructor({ parent = null } = {}) 
+  constructor(
   {
-    const geom = new THREE.BoxGeometry(0.5, 5, 0.5);
-    const mat = new THREE.MeshStandardMaterial({ color: 0xC9B903 });
+    length = 5,
+    thickness = 0.5,
+    color = 0xC9B903,
+    parent = null
+  } = {}) 
+  {
+    this.length = length;
+
+    const geom = new THREE.BoxGeometry(thickness, length, thickness);
+    const mat = new THREE.MeshStandardMaterial({ color });
 
     this.objectRoot = new THREE.Group();
 
     this.body = new THREE.Mesh(geom, mat);
 
-    // anchor at bottom
-    this.body.position.y = 2.5;
+    // anchor at bottom of the link
+    this.body.position.y = length / 2;
 
     this.objectRoot.add(this.body);
 

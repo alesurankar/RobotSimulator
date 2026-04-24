@@ -17,9 +17,7 @@ export class TestScene extends BaseScene
 
   CreateObjects()
   { 
-    this.robot = new Robot({
-      segments: 10
-    });
+    this.robot = new Robot();
     this.scene.add(this.robot.root);
     this.objects.push(this.robot);
   }
