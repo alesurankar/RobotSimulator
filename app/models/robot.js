@@ -45,7 +45,7 @@ export class Robot
       structure: [
         { length: 4 },
         { length: 4 },
-        { length: 2 }
+        { length: 2, restAngle: Math.PI/2 }
       ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
@@ -58,13 +58,50 @@ export class Robot
       structure: [
         { length: 4 },
         { length: 4 },
-        { length: 2 }
+        { length: 2, restAngle: Math.PI/2 }
       ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
       rotation: new THREE.Euler(0, 0, 4*Math.PI/5),
       position: new THREE.Vector3(-1, 0, 0)
     });
+  }
+
+  setPosition(x, y, z)
+  {
+    this.root.position.set(x, y, z);
+  }
+
+  setRotation(x, y, z)
+  {
+    this.root.rotation.set(x, y, z);
+  }
+
+  moveWorld(dx, dy, dz)
+  {
+    this.root.position.add(new THREE.Vector3(dx, dy, dz));
+  }
+
+  moveLocal(dx, dy, dz)
+  {
+    const v = new THREE.Vector3(dx, dy, dz);
+    v.applyQuaternion(this.root.quaternion);
+    this.root.position.add(v);
+  }
+
+  rotateX(angle)
+  {
+    this.root.rotateX(angle);
+  }
+
+  rotateY(angle)
+  {
+    this.root.rotateY(angle);
+  }
+
+  rotateZ(angle)
+  {
+    this.root.rotateZ(angle);
   }
 
   Update(dt)

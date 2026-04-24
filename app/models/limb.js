@@ -30,7 +30,8 @@ export class Limb
       // JOINT
       const joint = new Joint({
         parent: currentParent,
-        axis
+        axis,
+        restAngle: segment.restAngle ?? 0
       });
 
       this.joints.push(joint);
@@ -49,7 +50,7 @@ export class Limb
       currentParent = link.objectRoot;
     }
   }
-  
+
   Update(dt, fn)
   {
     const t = performance.now() * 0.001;
@@ -60,7 +61,7 @@ export class Limb
         ? fn(i, t)
         : 0;
 
-      this.joints[i].setRotation(angle);
+      this.joints[i].SetRotation(angle);
     }
   }
 
