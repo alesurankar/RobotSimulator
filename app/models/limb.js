@@ -6,8 +6,7 @@ export class Limb
 {
   constructor(
   {
-    segments = 3,
-    segmentLength = 5,
+    structure = [{ length: 5 }, { length: 5 }],
     parent = null,
     axis = new THREE.Vector3(0, 0, 1),
     position = new THREE.Vector3(0, 0, 0),
@@ -19,35 +18,15 @@ export class Limb
     this.root.rotation.copy(rotation);
     parent?.add(this.root);
 
-    //this.segments = segments;
-    //this.segmentLength = segmentLength;
-
     this.joints = [];
     this.links = [];
 
     let currentParent = this.root;
-    // JOINT
-    const joint = new Joint({
-      parent: currentParent,
-      axis
-    });
 
-    this.joints.push(joint);
-
-    // LINK
-    const link = new Link({
-      length: segmentLength,
-      parent: joint.pivot
-    });
-
-    this.links.push(link);
-
-    // move joint to end of previous link
-    joint.pivot.position.y = 0;
-
-    currentParent = link.objectRoot;
-    for (let i = 1; i < segments; i++) 
+    for (let i = 0; i < structure.length; i++) 
     {
+      const segment = structure[i];
+
       // JOINT
       const joint = new Joint({
         parent: currentParent,
@@ -56,24 +35,21 @@ export class Limb
 
       this.joints.push(joint);
 
-      // LINK
+      // LINK (use per-segment length)
       const link = new Link({
-        length: segmentLength,
+        length: segment.length,
         parent: joint.pivot
       });
 
       this.links.push(link);
 
-      // move joint to end of previous link
-      joint.pivot.position.y = segmentLength;
+      // offset joint to end of previous link
+      joint.pivot.position.y = (i === 0) ? 0 : structure[i - 1].length;
 
       currentParent = link.objectRoot;
     }
   }
-
-  /**
-   * Optional animation helper
-   */
+  
   Update(dt, fn)
   {
     const t = performance.now() * 0.001;

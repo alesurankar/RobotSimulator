@@ -8,15 +8,21 @@ export class Robot
     this.root = new THREE.Group();
     
     this.torso = new Limb({
-      segments: 2,
-      segmentLength: 5,
+      structure: [
+        { length: 6 },
+        { length: 2 },
+        { length: 2.6 }
+      ],
       parent: this.root
     });
 
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
-      segments: 3,
-      segmentLength: 3,
+      structure: [
+        { length: 4 },
+        { length: 3.8 },
+        { length: 2 }
+      ],
       parent: this.torso.joints[1].pivot,
       rotation: new THREE.Euler(0, 0, -Math.PI/2),
       position: new THREE.Vector3(1, 0, 0) 
@@ -24,8 +30,11 @@ export class Robot
 
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
-      segments: 3,
-      segmentLength: 3,
+      structure: [
+        { length: 4 },
+        { length: 3.8 },
+        { length: 2 }
+      ],
       parent: this.torso.joints[1].pivot,
       rotation: new THREE.Euler(0.5, 0, Math.PI/2),
       position: new THREE.Vector3(-1, 0, 0)
@@ -33,8 +42,11 @@ export class Robot
 
     // ===== LEFT LEG =====
     this.leftLeg = new Limb({
-      segments: 3,
-      segmentLength: 4,
+      structure: [
+        { length: 4 },
+        { length: 4 },
+        { length: 2 }
+      ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
       rotation: new THREE.Euler(0.5, 0, -4*Math.PI/5),
@@ -43,8 +55,11 @@ export class Robot
 
     // ===== RIGHT LEG =====
     this.rightLeg = new Limb({
-      segments: 3,
-      segmentLength: 4,
+      structure: [
+        { length: 4 },
+        { length: 4 },
+        { length: 2 }
+      ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
       rotation: new THREE.Euler(0, 0, 4*Math.PI/5),
