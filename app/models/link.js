@@ -5,13 +5,17 @@ export class Link
 {
   constructor(
   {
-    surfMat = null,
     geometry = null,
+    surfMat = null,
     parent = null, 
   } = {}) 
   {
-    this.body = new THREE.Mesh(geometry, surfMat);
-    this.objectRoot = new THREE.Group();   // position
+    const geom = geometry || new THREE.BoxGeometry(0.5, 5, 0.5);
+    const mat = surfMat || new THREE.MeshStandardMaterial({ color: 0xC9B903 });
+
+    this.objectRoot = new THREE.Group();
+    this.body = new THREE.Mesh(geom, mat);
+    this.body.position.y = 2.5;
     this.objectRoot.add(this.body);
 
     if (parent) {
@@ -26,8 +30,12 @@ export class Link
 
   Dispose() 
   {
+    if (this.body) {
+      this.body.geometry.dispose();
+      this.body.material.dispose();
+    }
+
     this.body = null;
-    this.geometry = null;
     this.objectRoot = null;
   }
 }

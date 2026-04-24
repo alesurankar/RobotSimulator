@@ -42,7 +42,9 @@ export class BaseScene
   Update(dt) 
   {
     for (const obj of this.objects) {
-      obj.Update(dt * this.timeFactor);
+      if (obj && typeof obj.Update === "function") {
+        obj.Update(dt * this.timeFactor);
+      }
     }
   }
 

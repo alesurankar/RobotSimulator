@@ -7,7 +7,7 @@ import { TestScene } from "../app/scenes/testScene.js";
 // Scene
 export const Scene = new THREE.Scene();
  
-const ambientLight = new THREE.AmbientLight(0x404040, 2);
+const ambientLight = new THREE.AmbientLight(0xffffff, 10);
 Scene.add(ambientLight);
 
 const manager = new SceneManager(Scene, Camera);

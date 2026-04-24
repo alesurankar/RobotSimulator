@@ -10,7 +10,7 @@ export class TestScene extends BaseScene
   {  
     super(scene, camera, player);
     this.cameraSettings = {
-      pos: { x: -1000, y: 1000, z: 1000 },
+      pos: { x: -10, y: 10, z: 10 },
       lookAt: { x: 0, y: 0, z: 0 },
       fov: 40
     };
@@ -18,16 +18,32 @@ export class TestScene extends BaseScene
 
   CreateObjects()
   {
-    // create robotBody
-    this.robotBody = new Link({
-    });
+    // Base link
+    this.robotBody = new Link({});
     this.scene.add(this.robotBody.objectRoot);
     this.objects.push(this.robotBody);
 
-    // create one joint
+    // Joint (pivot)
     this.joint1 = new Joint({
       parent: this.robotBody.objectRoot,
     });
     this.objects.push(this.joint1);
+
+    this.joint1.pivot.position.y = 5;
+
+    // Second link attached to joint
+    this.link2 = new Link({
+      parent: this.joint1.pivot
+    });
+    this.objects.push(this.link2);
+  }
+
+  Update(dt) {
+    super.Update(dt);
+
+    // custom robot logic here
+    const t = performance.now() * 0.001;
+
+    this.joint1.setRotation(Math.sin(t));
   }
 }

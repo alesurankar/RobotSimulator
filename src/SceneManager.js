@@ -24,6 +24,7 @@ export class SceneManager
   LoadScene(sceneClass) 
   {
     this.currentScene = new sceneClass(this.scene, this.camera);
+    this.currentScene.Init();
     this.UpdateCamera();
   }
 
@@ -38,6 +39,7 @@ export class SceneManager
     }
 
     this.currentScene = new SceneClass(this.scene, this.camera);
+    this.currentScene.Init();
     this.UpdateCamera();
   }
 
