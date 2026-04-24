@@ -10,15 +10,27 @@ export class Robot
     this.torso = new Limb({
       structure: [
         {
-          length: 6,
+          length: 1.7,
           restRotation: new THREE.Euler(0, 0, 0)
         },
         {
-          length: 2,
+          length: 1.7,
           restRotation: new THREE.Euler(0, 0, 0)
         },
         {
-          length: 2.6,
+          length: 1.7,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 1.7,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 1,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 2.7,
           restRotation: new THREE.Euler(0, 0, 0)
         }
       ],
@@ -29,19 +41,19 @@ export class Robot
     this.leftArm = new Limb({
       structure: [
         {
-          length: 4,
-          restRotation: new THREE.Euler(0, 0, 0)
+          length: 3.8,
+          restRotation: new THREE.Euler(-0.3, 0, -1.2)
         },
         {
-          length: 3.8,
-          restRotation: new THREE.Euler(0, 0, 0)
+          length: 3.6,
+          restRotation: new THREE.Euler(0.4, 0, -0.2)
         },
         {
           length: 2,
           restRotation: new THREE.Euler(0, 0, 0)
         }
       ],
-      parent: this.torso.joints[1].pivot,
+      parent: this.torso.joints[4].pivot,
       rotation: new THREE.Euler(0, 0, -Math.PI/2),
       position: new THREE.Vector3(1, 0, 0) 
     });
@@ -50,19 +62,19 @@ export class Robot
     this.rightArm = new Limb({
       structure: [
         {
-          length: 4,
-          restRotation: new THREE.Euler(0, 1, 0)
+          length: 3.8,
+          restRotation: new THREE.Euler(-0.3, 0, 1.2)
         },
         {
-          length: 3.8,
-          restRotation: new THREE.Euler(0, 1, 0)
+          length: 3.6,
+          restRotation: new THREE.Euler(0.4, 0, 0.2)
         },
         {
           length: 2,
-          restRotation: new THREE.Euler(0, 1, 0)
+          restRotation: new THREE.Euler(0, 0, 0)
         }
       ],
-      parent: this.torso.joints[1].pivot,
+      parent: this.torso.joints[4].pivot,
       rotation: new THREE.Euler(0, 0, Math.PI/2),
       position: new THREE.Vector3(-1, 0, 0)
     });
@@ -71,21 +83,22 @@ export class Robot
     this.leftLeg = new Limb({
       structure: [
         {
-          length: 4,
-          restRotation: new THREE.Euler(0, 1, 0)
+          length: 5.2,
+          restRotation: new THREE.Euler(0, 0, -3)
         },
         {
-          length: 4,
+          length: 4.7,
           restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 2,
-          restRotation: new THREE.Euler(0.5, 0, Math.PI / 2)
+          restRotation: new THREE.Euler(0, 1, Math.PI / 2)
         }
       ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
-      rotation: new THREE.Euler(0, 0, -4*Math.PI/5),
+      //rotation: new THREE.Euler(0, 0, -4*Math.PI/5),
+      rotation: new THREE.Euler(0, 0, 0),
       position: new THREE.Vector3(1, 0, 0) 
     });
 
@@ -93,21 +106,21 @@ export class Robot
     this.rightLeg = new Limb({
       structure: [
         {
-          length: 4,
-          restRotation: new THREE.Euler(0, 0, 0)
+          length: 5.2,
+          restRotation: new THREE.Euler(0, 0, 3)
         },
         {
-          length: 4,
+          length: 4.7,
           restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 2,
-          restRotation: new THREE.Euler(0.5, 0, Math.PI / 2)
+          restRotation: new THREE.Euler(0, 2, Math.PI / 2)
         }
       ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
-      rotation: new THREE.Euler(0, 0, 4*Math.PI/5),
+      rotation: new THREE.Euler(0, 0, 0),
       position: new THREE.Vector3(-1, 0, 0)
     });
   }
@@ -151,28 +164,28 @@ export class Robot
 
   Update(dt)
   {
-    // arms swing opposite
-    this.leftArm.Update(dt, (i, t) =>
-      Math.sin(t * 2 + i * 0.5) * 0.6
-    );
+    // // arms swing opposite
+    // this.leftArm.Update(dt, (i, t) =>
+    //   Math.sin(t * 2 + i * 0.5) * 0.6
+    // );
 
-    this.rightArm.Update(dt, (i, t) =>
-      Math.sin(t * 2 + Math.PI + i * 0.5) * 0.6
-    );
+    // this.rightArm.Update(dt, (i, t) =>
+    //   Math.sin(t * 2 + Math.PI + i * 0.5) * 0.6
+    // );
 
-    // legs opposite to arms
-    this.leftLeg.Update(dt, (i, t) =>
-      Math.sin(t * 2 + Math.PI + i * 0.6) * 0.3
-    );
+    // // legs opposite to arms
+    // this.leftLeg.Update(dt, (i, t) =>
+    //   Math.sin(t * 2 + Math.PI + i * 0.6) * 0.3
+    // );
 
-    this.rightLeg.Update(dt, (i, t) =>
-      Math.sin(t * 2 + i * 0.6) * 0.3
-    );
+    // this.rightLeg.Update(dt, (i, t) =>
+    //   Math.sin(t * 2 + i * 0.6) * 0.3
+    // );
 
-    // torso subtle sway
-    this.torso.Update(dt, (i, t) =>
-      Math.sin(t) * 0.1
-    );
+    // // torso subtle sway
+    // this.torso.Update(dt, (i, t) =>
+    //   Math.sin(t) * 0.1
+    // );
   }
 
   Dispose()

@@ -27,8 +27,6 @@ export class Link
     parent?.add(this.objectRoot);
   }
 
-  Update(dt) {}
-
   Dispose() 
   {
     this.body.geometry.dispose();
