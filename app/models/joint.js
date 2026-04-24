@@ -6,17 +6,13 @@ export class Joint
   { 
     parent = null,
     axis = new THREE.Vector3(0, 0, 1),
-    restAngle = 0,
-    speed = 2
+    restRotation = new THREE.Euler(),
   } = {}) 
   {
     this.axis = axis;
-    this.speed = speed;
+    this.restRotation = restRotation;
 
-    this.restAngle = restAngle;
-    this.angle = restAngle;
-    this.target = restAngle;
-
+    this.angle = 0;
     this.pivot = new THREE.Group();
 
     const debug = new THREE.Mesh(
@@ -31,24 +27,17 @@ export class Joint
 
   ApplyRotation() 
   {
-    this.pivot.rotation.set(
-      this.axis.x * this.angle,
-      this.axis.y * this.angle,
-      this.axis.z * this.angle
+    const restQuat = new THREE.Quaternion().setFromEuler(this.restRotation);
+    const animQuat = new THREE.Quaternion().setFromAxisAngle(
+      this.axis,
+      this.angle
     );
+    this.pivot.quaternion.copy(restQuat).multiply(animQuat);
   }
 
   SetRotation(angle) 
   {
-    this.angle = this.restAngle + angle;
-    this.ApplyRotation();
-  }
-
-  Update(dt) 
-  {
-    const diff = this.target - this.angle;
-    this.angle += diff * this.speed * dt;
-
+    this.angle = angle;
     this.ApplyRotation();
   }
 

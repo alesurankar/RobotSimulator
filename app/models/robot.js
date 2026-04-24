@@ -9,9 +9,18 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
-        { length: 6 },
-        { length: 2 },
-        { length: 2.6 }
+        {
+          length: 6,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 2,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 2.6,
+          restRotation: new THREE.Euler(0, 0, 0)
+        }
       ],
       parent: this.root
     });
@@ -19,9 +28,18 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
-        { length: 4 },
-        { length: 3.8 },
-        { length: 2 }
+        {
+          length: 4,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 3.8,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 2,
+          restRotation: new THREE.Euler(0, 0, 0)
+        }
       ],
       parent: this.torso.joints[1].pivot,
       rotation: new THREE.Euler(0, 0, -Math.PI/2),
@@ -31,34 +49,61 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
-        { length: 4 },
-        { length: 3.8 },
-        { length: 2 }
+        {
+          length: 4,
+          restRotation: new THREE.Euler(0, 1, 0)
+        },
+        {
+          length: 3.8,
+          restRotation: new THREE.Euler(0, 1, 0)
+        },
+        {
+          length: 2,
+          restRotation: new THREE.Euler(0, 1, 0)
+        }
       ],
       parent: this.torso.joints[1].pivot,
-      rotation: new THREE.Euler(0.5, 0, Math.PI/2),
+      rotation: new THREE.Euler(0, 0, Math.PI/2),
       position: new THREE.Vector3(-1, 0, 0)
     });
 
     // ===== LEFT LEG =====
     this.leftLeg = new Limb({
       structure: [
-        { length: 4 },
-        { length: 4 },
-        { length: 2, restAngle: Math.PI/2 }
+        {
+          length: 4,
+          restRotation: new THREE.Euler(0, 1, 0)
+        },
+        {
+          length: 4,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 2,
+          restRotation: new THREE.Euler(0.5, 0, Math.PI / 2)
+        }
       ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
-      rotation: new THREE.Euler(0.5, 0, -4*Math.PI/5),
+      rotation: new THREE.Euler(0, 0, -4*Math.PI/5),
       position: new THREE.Vector3(1, 0, 0) 
     });
 
     // ===== RIGHT LEG =====
     this.rightLeg = new Limb({
       structure: [
-        { length: 4 },
-        { length: 4 },
-        { length: 2, restAngle: Math.PI/2 }
+        {
+          length: 4,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 4,
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
+        {
+          length: 2,
+          restRotation: new THREE.Euler(0.5, 0, Math.PI / 2)
+        }
       ],
       parent: this.torso.root,
       axis: new THREE.Vector3(0, 0, -1),
@@ -67,47 +112,45 @@ export class Robot
     });
   }
 
-  setPosition(x, y, z)
+  SetPosition(x, y, z)
   {
     this.root.position.set(x, y, z);
   }
 
-  setRotation(x, y, z)
+  SetRotation(x, y, z)
   {
     this.root.rotation.set(x, y, z);
   }
 
-  moveWorld(dx, dy, dz)
+  MoveWorld(dx, dy, dz)
   {
     this.root.position.add(new THREE.Vector3(dx, dy, dz));
   }
 
-  moveLocal(dx, dy, dz)
+  MoveLocal(dx, dy, dz)
   {
     const v = new THREE.Vector3(dx, dy, dz);
     v.applyQuaternion(this.root.quaternion);
     this.root.position.add(v);
   }
 
-  rotateX(angle)
+  RotateX(angle)
   {
     this.root.rotateX(angle);
   }
 
-  rotateY(angle)
+  RotateY(angle)
   {
     this.root.rotateY(angle);
   }
 
-  rotateZ(angle)
+  RotateZ(angle)
   {
     this.root.rotateZ(angle);
   }
 
   Update(dt)
   {
-    const t = performance.now() * 0.001;
-
     // arms swing opposite
     this.leftArm.Update(dt, (i, t) =>
       Math.sin(t * 2 + i * 0.5) * 0.6

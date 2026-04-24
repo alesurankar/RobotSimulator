@@ -9,8 +9,8 @@ export class Limb
     structure = [{ length: 5 }, { length: 5 }],
     parent = null,
     axis = new THREE.Vector3(0, 0, 1),
-    position = new THREE.Vector3(0, 0, 0),
-    rotation = new THREE.Euler(0, 0, 0),
+    position = new THREE.Vector3(),
+    rotation = new THREE.Euler(),
   } = {}) 
   {
     this.root = new THREE.Group();
@@ -31,22 +31,18 @@ export class Limb
       const joint = new Joint({
         parent: currentParent,
         axis,
-        restAngle: segment.restAngle ?? 0
+        restRotation: segment.restRotation ?? new THREE.Euler()
       });
-
       this.joints.push(joint);
 
-      // LINK (use per-segment length)
+      // LINK
       const link = new Link({
         length: segment.length,
         parent: joint.pivot
       });
-
       this.links.push(link);
-
-      // offset joint to end of previous link
+      
       joint.pivot.position.y = (i === 0) ? 0 : structure[i - 1].length;
-
       currentParent = link.objectRoot;
     }
   }

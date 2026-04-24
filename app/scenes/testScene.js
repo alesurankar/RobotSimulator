@@ -25,8 +25,8 @@ export class TestScene extends BaseScene
   Update(dt) 
   {
     super.Update(dt);
-    this.robot.rotateY(0.01);
-    this.robot.moveLocal(0, 0, 0.1);
-    this.robot.moveWorld(0, 0.04, 0);
+    this.robot.RotateY(0.01);
+    this.robot.MoveLocal(0, 0, 0.1);
+    //this.robot.MoveWorld(0, 0.04, 0);
   }
 }
