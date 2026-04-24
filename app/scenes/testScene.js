@@ -19,13 +19,13 @@ export class TestScene extends BaseScene
   CreateObjects()
   {
     // Base link
-    this.robotBody = new Link({});
-    this.scene.add(this.robotBody.objectRoot);
-    this.objects.push(this.robotBody);
+    this.link1 = new Link({});
+    this.scene.add(this.link1.objectRoot);
+    this.objects.push(this.link1);
 
     // Joint (pivot)
     this.joint1 = new Joint({
-      parent: this.robotBody.objectRoot,
+      parent: this.link1.objectRoot,
     });
     this.objects.push(this.joint1);
 
@@ -36,14 +36,31 @@ export class TestScene extends BaseScene
       parent: this.joint1.pivot
     });
     this.objects.push(this.link2);
+
+    // Joint (pivot)
+    this.joint2 = new Joint({
+      parent: this.link2.objectRoot,
+    });
+    this.objects.push(this.joint2);
+
+    this.joint2.pivot.position.y = 5;
+
+    // Third link attached to joint
+    this.link3 = new Link({
+      parent: this.joint2.pivot
+    });
+    this.objects.push(this.link3);
   }
 
-  Update(dt) {
+  Update(dt) 
+  {
     super.Update(dt);
 
     // custom robot logic here
     const t = performance.now() * 0.001;
 
     this.joint1.setRotation(Math.sin(t));
+
+    this.joint2.setRotation(Math.sin(t));
   }
 }
