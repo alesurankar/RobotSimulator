@@ -15,23 +15,22 @@ export class Robot
         },
         {
           length: 1.7,
-          restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 1.7,
-          restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 1.7,
-          restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 1,
-          restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 2.7,
-          restRotation: new THREE.Euler(0, 0, 0)
+          length: 2.7,
+          thickness: 2.0,
+          color: 0x00ccaa,
+          shape: "sphere"
         }
       ],
       parent: this.root
@@ -50,7 +49,6 @@ export class Robot
         },
         {
           length: 2,
-          restRotation: new THREE.Euler(0, 0, 0)
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -71,7 +69,6 @@ export class Robot
         },
         {
           length: 2,
-          restRotation: new THREE.Euler(0, 0, 0)
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -88,7 +85,6 @@ export class Robot
         },
         {
           length: 4.7,
-          restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 2,
@@ -111,7 +107,6 @@ export class Robot
         },
         {
           length: 4.7,
-          restRotation: new THREE.Euler(0, 0, 0)
         },
         {
           length: 2,
