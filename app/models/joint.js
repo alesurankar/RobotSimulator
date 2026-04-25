@@ -7,10 +7,14 @@ export class Joint
     parent = null,
     axis = new THREE.Vector3(0, 0, 1),
     restRotation = new THREE.Euler(),
+    minAngle = -Math.PI,
+    maxAngle = Math.PI,
   } = {}) 
   {
     this.axis = axis;
     this.restRotation = restRotation;
+    this.minAngle = minAngle;
+    this.maxAngle = maxAngle;
 
     this.angle = 0;
     this.pivot = new THREE.Group();
@@ -30,8 +34,10 @@ export class Joint
   ApplyRotation() 
   {
     const restQuat = new THREE.Quaternion().setFromEuler(this.restRotation);
+    const worldAxis = this.axis.clone().applyQuaternion(restQuat);
+
     const animQuat = new THREE.Quaternion().setFromAxisAngle(
-      this.axis,
+      worldAxis,
       this.angle
     );
     this.pivot.quaternion.copy(restQuat).multiply(animQuat);
@@ -39,7 +45,11 @@ export class Joint
 
   SetRotation(angle) 
   {
-    this.angle = angle;
+    this.angle = THREE.MathUtils.clamp(
+      angle,
+      this.minAngle,
+      this.maxAngle
+    );
     this.ApplyRotation();
   }
 

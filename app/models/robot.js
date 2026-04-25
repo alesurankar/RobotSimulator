@@ -12,17 +12,16 @@ export class Robot
     this.torso = new Limb({
       structure: [
         {
-          length: 1.7,
-          restRotation: new THREE.Euler(0, 0, 0)
+          length: 2.0,
         },
         {
-          length: 1.7,
+          length: 1.6,
         },
         {
-          length: 1.7,
+          length: 1.6,
         },
         {
-          length: 1.7,
+          length: 1.6,
         },
         {
           length: 1,
@@ -30,7 +29,7 @@ export class Robot
         {
           length: 2.7,
           thickness: 2.0,
-          color: 0x00ccaa,
+          color: 0xC9B904,
           shape: "sphere"
         }
       ],
@@ -82,7 +81,9 @@ export class Robot
       structure: [
         {
           length: 5.2,
-          restRotation: new THREE.Euler(0, 0, -3)
+          restRotation: new THREE.Euler(0, 0, -3),
+          min: -1,
+          max: 1
         },
         {
           length: 4.7,

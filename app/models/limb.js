@@ -31,7 +31,9 @@ export class Limb
       const joint = new Joint({
         parent: currentParent,
         axis,
-        restRotation: segment.restRotation ?? new THREE.Euler()
+        restRotation: segment.restRotation ?? new THREE.Euler(),
+        minAngle: segment.min ?? -Math.PI,
+        maxAngle: segment.max ?? Math.PI
       });
       this.joints.push(joint);
 
