@@ -5,51 +5,46 @@ import { Camera, Renderer } from "./RendererSetup.js";
 
 export class Engine 
 {
-    constructor({fps = 60} = {}) 
-    {
-      this.FIXED_FPS = fps;
-      this.FIXED_DT = 1 / this.FIXED_FPS;
-      this.lastTime = performance.now() / 1000;
-      this.accumulator = 0;
+  constructor({fps = 60} = {}) 
+  {
+    this.FIXED_FPS = fps;
+    this.FIXED_DT = 1 / this.FIXED_FPS;
+    this.lastTime = performance.now() / 1000;
+    this.accumulator = 0;
+    this.timeScale = 1;
 
-      this.timeScale = 1;
+    this.gameControls = new GameControls(Camera, document.body);
+    this.MainLoop = this.MainLoop.bind(this);
+  }
 
-      this.gameControls = new GameControls(Camera, document.body);
-      this.MainLoop = this.MainLoop.bind(this);
+  MainLoop(now) 
+  {
+    now /= 1000;
+
+    const frameTime = now - this.lastTime;
+    this.lastTime = now;
+
+    this.accumulator += frameTime;
+
+    // Fixed-step updates
+    while (this.accumulator >= this.FIXED_DT) {
+      this.gameControls.Update();
+      SceneUpdate(this.timeScale);
+      this.accumulator -= this.FIXED_DT;
     }
 
-    MainLoop(now) 
-    {
-      now /= 1000;
+    // Render
+    Renderer.render(Scene, Camera);
+    requestAnimationFrame(this.MainLoop);
+  }
 
-      const frameTime = now - this.lastTime;
-      this.lastTime = now;
+  Start() 
+  {
+    requestAnimationFrame(this.MainLoop);
+  }
 
-      this.accumulator += frameTime;
-
-      // Fixed-step updates
-      while (this.accumulator >= this.FIXED_DT) {
-        this.gameControls.Update();
-        SceneUpdate(this.timeScale);
-        this.accumulator -= this.FIXED_DT;
-      }
-
-      // Render
-      Renderer.render(Scene, Camera);
-      requestAnimationFrame(this.MainLoop);
-    }
-
-    Start() 
-    {
-        requestAnimationFrame(this.MainLoop);
-    }
-
-    ToggleLock() 
-    {
-      this.gameControls.ToggleLock();
-    }
-
-    SetTimeScale(scale) {
-      this.timeScale = Math.max(0, scale);
-    }
+  ToggleLock() 
+  {
+    this.gameControls.ToggleLock();
+  }
 }
