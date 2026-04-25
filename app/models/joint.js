@@ -15,12 +15,14 @@ export class Joint
     this.angle = 0;
     this.pivot = new THREE.Group();
 
-    const debug = new THREE.Mesh(
+    this.body = new THREE.Mesh(
       new THREE.SphereGeometry(0.55, 16, 16),
       new THREE.MeshStandardMaterial({ color: 0xff0000 })
     );
+    this.body.castShadow = true;
+    this.body.receiveShadow = true;
 
-    this.pivot.add(debug);
+    this.pivot.add(this.body);
     parent?.add(this.pivot);
     this.ApplyRotation();
   }

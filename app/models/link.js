@@ -51,6 +51,8 @@ export class Link
     const mat = new THREE.MeshStandardMaterial({ color });
     this.objectRoot = new THREE.Group();
     this.body = new THREE.Mesh(geom, mat);
+    this.body.castShadow = true;
+    this.body.receiveShadow = true;
 
     // anchor at bottom of the link
     if (shape === "sphere") {

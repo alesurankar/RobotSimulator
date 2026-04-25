@@ -6,6 +6,8 @@ export class Robot
   constructor()
   {
     this.root = new THREE.Group();
+    this.model = new THREE.Group();
+    this.root.add(this.model);
     
     this.torso = new Limb({
       structure: [
@@ -32,7 +34,7 @@ export class Robot
           shape: "sphere"
         }
       ],
-      parent: this.root
+      parent: this.model
     });
 
     // ===== LEFT ARM =====
@@ -117,6 +119,8 @@ export class Robot
       rotation: new THREE.Euler(0, 0, 0),
       position: new THREE.Vector3(-1, 0, 0)
     });
+    
+    this.model.position.y = 10;
   }
 
   SetPosition(x, y, z)

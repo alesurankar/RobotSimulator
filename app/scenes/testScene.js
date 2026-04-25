@@ -20,6 +20,18 @@ export class TestScene extends BaseScene
     this.robot = new Robot();
     this.scene.add(this.robot.root);
     this.objects.push(this.robot);
+
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(100, 100),
+      new THREE.MeshStandardMaterial({ color: 0x444444 })
+    );
+
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -0.01;
+
+    ground.receiveShadow = true;
+
+    this.scene.add(ground);
   }
 
   Update(dt) 
