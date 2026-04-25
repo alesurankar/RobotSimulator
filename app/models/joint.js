@@ -16,8 +16,8 @@ export class Joint
     this.pivot = new THREE.Group();
 
     const debug = new THREE.Mesh(
-      new THREE.SphereGeometry(0.55),
-      new THREE.MeshBasicMaterial({ color: 0xff0000 })
+      new THREE.SphereGeometry(0.55, 16, 16),
+      new THREE.MeshStandardMaterial({ color: 0xff0000 })
     );
 
     this.pivot.add(debug);
