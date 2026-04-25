@@ -15,18 +15,50 @@ export class Link
 
     let geom 
     if (shape === "sphere") {
-      geom = new THREE.SphereGeometry(thickness, 10, 10);
-    } 
+      geom = new THREE.SphereGeometry(thickness, 16, 16);
+      const pos = geom.attributes.position;
+      for (let i = 0; i < pos.count; i++) {
+        let x = pos.getX(i);
+        let y = pos.getY(i);
+        let z = pos.getZ(i);
+
+        // stretch top
+        if (y > 0) {
+          y *= 1.2;
+        }
+        // flatten bottom
+        if (y < -0.5) {
+          y *= 0.8;
+        }
+        // slight horizontal squash
+        y *= 1.15;
+        z *= 1.15;
+        // lower-back dent
+        if (y < 0.5 && z < 0) {
+          const strength = (Math.abs(y) * z) * 0.4;
+          z -= strength;   // push inward
+        }
+        pos.setXYZ(i, x, y, z);
+      }
+
+      pos.needsUpdate = true;
+      geom.computeVertexNormals();
+    }
     else {
       geom = new THREE.BoxGeometry(thickness, length, thickness);
     }
-    const mat = new THREE.MeshStandardMaterial({ color });
 
+    const mat = new THREE.MeshStandardMaterial({ color });
     this.objectRoot = new THREE.Group();
     this.body = new THREE.Mesh(geom, mat);
 
     // anchor at bottom of the link
-    this.body.position.y = length / 2;
+    if (shape === "sphere") {
+      this.body.position.y = thickness;
+    } 
+    else {
+      this.body.position.y = length / 2;
+    }
 
     this.objectRoot.add(this.body);
     parent?.add(this.objectRoot);

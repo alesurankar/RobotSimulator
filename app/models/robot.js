@@ -27,7 +27,6 @@ export class Robot
         },
         {
           length: 2.7,
-          length: 2.7,
           thickness: 2.0,
           color: 0x00ccaa,
           shape: "sphere"
