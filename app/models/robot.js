@@ -87,6 +87,7 @@ export class Robot
         },
         {
           length: 4.7,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
@@ -109,6 +110,7 @@ export class Robot
         },
         {
           length: 4.7,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
