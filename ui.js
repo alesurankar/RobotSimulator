@@ -27,6 +27,9 @@ export class UI
     this.AddSlider("Move Speed", 0, 10, 0, (v) => {
       this.engine.SetMoveSpeed(v);
     });
+    this.AddSlider("Left Shoulder", 0, 10, 0, (v) => {
+      this.engine.joints.Set("leftShoulder.rotate", v);
+    });
   }
 
   AddButton(label, onClick) 
