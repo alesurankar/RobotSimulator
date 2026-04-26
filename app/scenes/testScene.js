@@ -11,8 +11,8 @@ export class TestScene extends BaseScene
   {  
     super(scene);
     this.cameraSettings = {
-      pos: { x: -10, y: 10, z: 10 },
-      lookAt: { x: 0, y: 0, z: 0 },
+      pos: { x: -50, y: 20, z: 50 },
+      lookAt: { x: 0, y: 10, z: 0 },
       fov: 40
     };
     this.locomotion = null;

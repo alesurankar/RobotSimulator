@@ -41,7 +41,8 @@ export class Robot
       structure: [
         {
           length: 3.8,
-          restRotation: new THREE.Euler(-0.3, 0, -1.2)
+          restRotation: new THREE.Euler(-0.3, 0, -1.2),
+          axis: new THREE.Vector3(0, 0, 1),
         },
         {
           length: 3.6,
@@ -61,7 +62,8 @@ export class Robot
       structure: [
         {
           length: 3.8,
-          restRotation: new THREE.Euler(-0.3, 0, 1.2)
+          restRotation: new THREE.Euler(-0.3, 0, 1.2),
+          axis: new THREE.Vector3(0, 0, -1),
         },
         {
           length: 3.6,

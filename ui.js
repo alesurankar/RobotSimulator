@@ -27,8 +27,17 @@ export class UI
     this.AddSlider("Move Speed", 0, 10, 0, (v) => {
       this.engine.blackboard.Set("locomotion.moveSpeed", v);
     });
-    this.AddSlider("LeftKnee", 0, 10, 0, (v) => {
+    this.AddSlider("LeftKnee", 0, 100, 0, (v) => {
       this.engine.blackboard.Set("leftKnee.stretch", v);
+    });
+    this.AddSlider("RightKnee", 0, 100, 0, (v) => {
+      this.engine.blackboard.Set("rightKnee.stretch", v);
+    });
+    this.AddSlider("LeftShoulder", 0, 100, 0, (v) => {
+      this.engine.blackboard.Set("leftShoulder.rotate", v);
+    });
+    this.AddSlider("RightShoulder", 0, 100, 0, (v) => {
+      this.engine.blackboard.Set("rightShoulder.rotate", v);
     });
   }
 
