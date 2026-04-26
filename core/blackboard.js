@@ -1,4 +1,4 @@
-export class JointRegistry 
+export class Blackboard 
 {
   constructor() 
   {
@@ -31,7 +31,7 @@ export class JointRegistry
   // Debug helper
   Dump() 
   {
-    console.log("JointRegistry:");
+    console.log("Blackboard:");
     for (const [k, v] of this.values.entries()) {
       console.log(`${k} = ${v}`);
     }

@@ -3,7 +3,7 @@ import { GameControls } from "../app/utils/gameControls.js";
 import { DesktopInput } from "../app/input/desktopInput.js";
 import { MobileInput } from "../app/input/mobileInput.js";
 import { InputState } from "../app/input/inputState.js";
-import { JointRegistry } from "../core/jointRegistry.js";
+import { Blackboard } from "../core/blackboard.js";
 import { Camera, Renderer } from "./RendererSetup.js";
 
 
@@ -17,7 +17,7 @@ export class Engine
     this.accumulator = 0;
 
     this.input = new InputState();
-    this.joints = new JointRegistry();
+    this.blackboard = new Blackboard();
     const isTouch = navigator.maxTouchPoints > 0;
 
     if (isTouch) {
@@ -42,7 +42,7 @@ export class Engine
     // Fixed-step updates
     while (this.accumulator >= this.FIXED_DT) {
       this.gameControls.Update();
-      SceneUpdate(this.FIXED_DT, this.joints);
+      SceneUpdate(this.FIXED_DT, this.blackboard);
       this.accumulator -= this.FIXED_DT;
     }
     Renderer.render(Scene, Camera);

@@ -22,13 +22,13 @@ export class UI
       });
     }
     this.AddSlider("Rotate Speed", 0, 5, 0, (v) => {
-      this.engine.joints.Set("locomotion.rotateSpeed", v);
+      this.engine.blackboard.Set("locomotion.rotateSpeed", v);
     });
     this.AddSlider("Move Speed", 0, 10, 0, (v) => {
-      this.engine.joints.Set("locomotion.moveSpeed", v);
+      this.engine.blackboard.Set("locomotion.moveSpeed", v);
     });
-    this.AddSlider("Left Shoulder", 0, 10, 0, (v) => {
-      this.engine.joints.Set("leftShoulder.rotate", v);
+    this.AddSlider("LeftKnee", 0, 10, 0, (v) => {
+      this.engine.blackboard.Set("leftKnee.stretch", v);
     });
   }
 

@@ -34,11 +34,11 @@ export class BaseScene
     }
   }
 
-  Update(dt, joints) 
+  Update(dt, blackboard) 
   {
     for (const obj of this.objects) {
       if (obj && typeof obj.Update === "function") {
-        obj.Update(dt, joints);
+        obj.Update(dt, blackboard);
       }
     }
   }

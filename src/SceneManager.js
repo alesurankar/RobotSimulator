@@ -43,10 +43,10 @@ export class SceneManager
     this.UpdateCamera();
   }
 
-  Update(dt, joints) 
+  Update(dt, blackboard) 
   {
     if (this.currentScene) {
-      this.currentScene.Update(dt, joints);
+      this.currentScene.Update(dt, blackboard);
     }
     const requested = this.currentScene?.requestedScene;
     if (!requested) {

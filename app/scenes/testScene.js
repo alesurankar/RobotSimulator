@@ -39,9 +39,9 @@ export class TestScene extends BaseScene
     this.scene.add(ground);
   }
 
-  Update(dt, joints) 
+  Update(dt, blackboard) 
   {
-    super.Update(dt, joints);
-    this.locomotion.Update(dt, joints);
+    super.Update(dt, blackboard);
+    this.locomotion.Update(dt, blackboard);
   }
 }

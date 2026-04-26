@@ -26,8 +26,9 @@ RobotSimulator/
 │       └─ skyBox.js
 │
 ├─ core/
-│   ├─ jointRegistry.js
-│   └─ locomotion.js
+│   ├─ blackboard.js
+│   ├─ locomotion.js
+│   └─ poseSystem.js
 │
 ├─ src/
 │   ├─ Engine.js
