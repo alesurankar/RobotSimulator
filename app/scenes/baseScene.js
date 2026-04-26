@@ -4,7 +4,7 @@ import { SkyBox } from "../visuals/skyBox.js";
 
 export class BaseScene 
 {
-  constructor(scene, camera, player, skyBoxName = "skyBox") 
+  constructor(scene, skyBoxName = "skyBox") 
   {
     this.active = true;
     
@@ -17,10 +17,7 @@ export class BaseScene
     };
     this.scene = scene;
     this.scene.background = SkyBox.Load(skyBoxName);
-    this.camera = camera;
-    this.player = player;
     this.objects = [];
-    this.objectMap = {};
   }
 
   Init() 
@@ -48,16 +45,11 @@ export class BaseScene
     this.active = false;
     this.objects.forEach(obj => obj?.Dispose());
     this.objects = [];
-    if (this.sceneTriggers) {
-        this.sceneTriggers = [];
-    }
 
     // Dispose skybox
     if (this.scene?.background) {
       SkyBox.Dispose(this.scene.background);
       this.scene.background = null;
     }
-    // Clear objectMap to remove references
-    this.objectMap = {};
   }
 }

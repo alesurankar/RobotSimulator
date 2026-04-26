@@ -122,6 +122,13 @@ export class Robot
     });
     
     this.model.position.y = 10;
+
+    this.limbs = {
+      leftLeg: this.leftLeg,
+      rightLeg: this.rightLeg,
+      leftArm: this.leftArm,
+      rightArm: this.rightArm
+    };
   }
 
   SetPosition(x, y, z)
