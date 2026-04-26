@@ -4,13 +4,9 @@ import { SkyBox } from "../visuals/skyBox.js";
 
 export class BaseScene 
 {
-  // Step 10
   constructor(scene, camera, player, skyBoxName = "skyBox") 
   {
     this.active = true;
-    this.timeFactor=1
-
-    this.SIZE_SCALE = 1;
     
     this.cameraSettings = {
       pos: { x: 0, y: 0, z: 10 },
@@ -30,7 +26,6 @@ export class BaseScene
   Init() 
   {
     if (!this.active) return;
-
     try {
       this.CreateObjects();
     }
@@ -39,11 +34,11 @@ export class BaseScene
     }
   }
 
-  Update(dt) 
+  Update(dt, state) 
   {
     for (const obj of this.objects) {
       if (obj && typeof obj.Update === "function") {
-        obj.Update(dt * this.timeFactor);
+        obj.Update(dt, state);
       }
     }
   }

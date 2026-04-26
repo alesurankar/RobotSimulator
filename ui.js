@@ -21,11 +21,11 @@ export class UI
         this.engine.ToggleLock();
       });
     }
-    this.AddSlider("testSlider", 1, 10, 3, (v) => {
-      console.log("slider value:", v);
+    this.AddSlider("Rotate Speed", 0, 5, 0, (v) => {
+      this.engine.SetRotateSpeed(v);
     });
-    this.AddSlider("testSlider", 1, 10, 3, (v) => {
-      console.log("slider value:", v);
+    this.AddSlider("Move Speed", 0, 10, 0, (v) => {
+      this.engine.SetMoveSpeed(v);
     });
   }
 

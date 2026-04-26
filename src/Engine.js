@@ -14,7 +14,9 @@ export class Engine
     this.FIXED_DT = 1 / this.FIXED_FPS;
     this.lastTime = performance.now() / 1000;
     this.accumulator = 0;
-    this.timeScale = 1;
+    this.state = {
+      ui: { rotateSpeed: 0, moveSpeed: 0 }
+    };
 
     this.input = new InputState();
     const isTouch = navigator.maxTouchPoints > 0;
@@ -41,7 +43,7 @@ export class Engine
     // Fixed-step updates
     while (this.accumulator >= this.FIXED_DT) {
       this.gameControls.Update();
-      SceneUpdate(this.timeScale);
+      SceneUpdate(this.FIXED_DT, this.state);
       this.accumulator -= this.FIXED_DT;
     }
     Renderer.render(Scene, Camera);
@@ -56,5 +58,15 @@ export class Engine
   ToggleLock() 
   {
     this.gameControls.ToggleLock();
+  }
+  
+  SetRotateSpeed(v)
+  {
+    this.state.ui.rotateSpeed = v;
+  }
+
+  SetMoveSpeed(v)
+  {
+    this.state.ui.moveSpeed = v;
   }
 }

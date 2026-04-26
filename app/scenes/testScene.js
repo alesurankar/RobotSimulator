@@ -34,11 +34,16 @@ export class TestScene extends BaseScene
     this.scene.add(ground);
   }
 
-  Update(dt) 
+  Update(dt, state) 
   {
-    super.Update(dt);
-    //this.robot.RotateY(0.01);
-    //this.robot.MoveLocal(0, 0, 0.1);
-    //this.robot.MoveWorld(0, 0.04, 0);
+    super.Update(dt, state);
+
+    const r = state.ui.rotateSpeed;
+    const m = state.ui.moveSpeed; 
+
+    if (this.robot) {
+      this.robot.RotateY(r * dt);
+      this.robot.MoveLocal(0, 0, m * dt);
+    }
   }
 }
