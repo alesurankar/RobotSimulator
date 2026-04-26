@@ -33,11 +33,25 @@ export class UI
     this.AddSlider("RightKnee", 0, 100, 0, (v) => {
       this.engine.blackboard.Set("rightKnee.stretch", v);
     });
-    this.AddSlider("LeftShoulder", 0, 100, 0, (v) => {
-      this.engine.blackboard.Set("leftShoulder.rotate", v);
+    // Left Shoulder
+    this.AddSlider("Left Shoulder Pitch", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("leftShoulder.pitch", v);
     });
-    this.AddSlider("RightShoulder", 0, 100, 0, (v) => {
-      this.engine.blackboard.Set("rightShoulder.rotate", v);
+    this.AddSlider("Left Shoulder Yaw", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("leftShoulder.yaw", v);
+    });
+    this.AddSlider("Left Shoulder Roll", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("leftShoulder.roll", v);
+    });
+    // Right Shoulder
+    this.AddSlider("Right Shoulder Pitch", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("rightShoulder.pitch", v);
+    });
+    this.AddSlider("Right Shoulder Yaw", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("rightShoulder.yaw", v);
+    });
+    this.AddSlider("Right Shoulder Roll", 0, 100, 50, (v) => {
+      this.engine.blackboard.Set("rightShoulder.roll", v);
     });
   }
 

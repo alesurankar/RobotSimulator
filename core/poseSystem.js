@@ -13,50 +13,69 @@ export class PoseSystem
     this.joints[name] = joint;
   }
 
+  MapToJoint(joint, value)
+  {
+    const t = THREE.MathUtils.clamp((value - 50) / 50, -1, 1);
+
+    return THREE.MathUtils.lerp(
+      joint.minAngle,
+      joint.maxAngle,
+      (t + 1) / 2
+    );
+  }
+
   Update(dt, blackboard) 
   {
-    // ---- LEFT KNEE ----
-    const kneeStretch = blackboard.Get("leftKnee.stretch", 0);
+    // ---- KNEES ----
+    const lk = blackboard.Get("leftKnee.stretch", 0);
+    const rk = blackboard.Get("rightKnee.stretch", 0);
 
-    if (this.joints.leftKnee) 
-    {
-      // map 0–10 slider → normalized 0–1
-      const t = THREE.MathUtils.clamp(kneeStretch / 100, 0, 1);
+    const maxBend = Math.PI * 0.8;
 
-      // convert to angle (example: 0 → straight, 1 → bent)
-      const maxBend = Math.PI * 0.8;
-
+    if (this.joints.leftKnee) {
+      const t = lk / 100;
       this.joints.leftKnee.SetRotation(-t * maxBend);
     }
 
-    // ---- RIGHT KNEE ----
-    const rightStretch = blackboard.Get("rightKnee.stretch", 0);
-
-    if (this.joints.rightKnee) 
-    {
-      const t = THREE.MathUtils.clamp(rightStretch / 100, 0, 1);
-      const maxBend = Math.PI * 0.8;
-
+    if (this.joints.rightKnee) {
+      const t = rk / 100;
       this.joints.rightKnee.SetRotation(-t * maxBend);
     }
 
-    // ---- SHOULDERS ----
-    const leftShoulder = blackboard.Get("leftShoulder.rotate", 0);
+    // ---- LEFT SHOULDER ----
+    const lPitch = blackboard.Get("leftShoulder.pitch", 50);
+    const lYaw   = blackboard.Get("leftShoulder.yaw", 50);
+    const lRoll  = blackboard.Get("leftShoulder.roll", 50);
 
-    if (this.joints.leftShoulder) 
-    {
-      const t = THREE.MathUtils.clamp(leftShoulder / 100, -1, 1);
-      const maxAngle = Math.PI * 0.75;
-      this.joints.leftShoulder.SetRotation(t * maxAngle);
+    if (this.joints["leftShoulder.pitch"]) {
+      const joint = this.joints["leftShoulder.pitch"];
+      joint.SetRotation(this.MapToJoint(joint, lPitch));
+    }
+    if (this.joints["leftShoulder.yaw"]) {
+      const joint = this.joints["leftShoulder.yaw"];
+      joint.SetRotation(this.MapToJoint(joint, lYaw));
+    }
+    if (this.joints["leftShoulder.roll"]) {
+      const joint = this.joints["leftShoulder.roll"];
+      joint.SetRotation(this.MapToJoint(joint, lRoll));
     }
 
-    const rightShoulder = blackboard.Get("rightShoulder.rotate", 0);
+    // ---- RIGHT SHOULDER ----
+    const rPitch = blackboard.Get("rightShoulder.pitch", 50);
+    const rYaw   = blackboard.Get("rightShoulder.yaw", 50);
+    const rRoll  = blackboard.Get("rightShoulder.roll", 50);
 
-    if (this.joints.rightShoulder) 
-    {
-      const t = THREE.MathUtils.clamp(rightShoulder / 100, -1, 1);
-      const maxAngle = Math.PI * 0.75;
-      this.joints.rightShoulder.SetRotation(t * maxAngle);
+    if (this.joints["rightShoulder.pitch"]) {
+      const joint = this.joints["rightShoulder.pitch"];
+      joint.SetRotation(this.MapToJoint(joint, rPitch));
+    }
+    if (this.joints["rightShoulder.yaw"]) {
+      const joint = this.joints["rightShoulder.yaw"];
+      joint.SetRotation(this.MapToJoint(joint, rYaw));
+    }
+    if (this.joints["rightShoulder.roll"]) {
+      const joint = this.joints["rightShoulder.roll"];
+      joint.SetRotation(this.MapToJoint(joint, rRoll));
     }
   }
 }

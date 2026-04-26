@@ -30,8 +30,15 @@ export class TestScene extends BaseScene
     this.poseSystem = new PoseSystem(this.robot);
     this.poseSystem.RegisterJoint("leftKnee", this.robot.leftLeg.joints[1]);
     this.poseSystem.RegisterJoint("rightKnee", this.robot.rightLeg.joints[1]);
-    this.poseSystem.RegisterJoint("leftShoulder", this.robot.leftArm.joints[0]);
-    this.poseSystem.RegisterJoint("rightShoulder", this.robot.rightArm.joints[0]);
+    
+    // Shoulders
+    this.poseSystem.RegisterJoint("leftShoulder.pitch", this.robot.leftArm.joints[0]);
+    this.poseSystem.RegisterJoint("leftShoulder.yaw",   this.robot.leftArm.joints[1]);
+    this.poseSystem.RegisterJoint("leftShoulder.roll",  this.robot.leftArm.joints[2]);
+
+    this.poseSystem.RegisterJoint("rightShoulder.pitch", this.robot.rightArm.joints[0]);
+    this.poseSystem.RegisterJoint("rightShoulder.yaw",   this.robot.rightArm.joints[1]);
+    this.poseSystem.RegisterJoint("rightShoulder.roll",  this.robot.rightArm.joints[2]);
 
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),
