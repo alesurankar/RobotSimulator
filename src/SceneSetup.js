@@ -44,7 +44,7 @@ const manager = new SceneManager(Scene, Camera);
 
 manager.LoadScene(TestScene);
 
-export function Update(dt, state) 
+export function Update(dt, joints) 
 {
-  manager.Update(dt, state);
+  manager.Update(dt, joints);
 }

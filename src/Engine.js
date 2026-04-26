@@ -3,6 +3,7 @@ import { GameControls } from "../app/utils/gameControls.js";
 import { DesktopInput } from "../app/input/desktopInput.js";
 import { MobileInput } from "../app/input/mobileInput.js";
 import { InputState } from "../app/input/inputState.js";
+import { JointRegistry } from "../core/jointRegistry.js";
 import { Camera, Renderer } from "./RendererSetup.js";
 
 
@@ -14,11 +15,9 @@ export class Engine
     this.FIXED_DT = 1 / this.FIXED_FPS;
     this.lastTime = performance.now() / 1000;
     this.accumulator = 0;
-    this.state = {
-      ui: { rotateSpeed: 0, moveSpeed: 0 }
-    };
 
     this.input = new InputState();
+    this.joints = new JointRegistry();
     const isTouch = navigator.maxTouchPoints > 0;
 
     if (isTouch) {
@@ -43,7 +42,7 @@ export class Engine
     // Fixed-step updates
     while (this.accumulator >= this.FIXED_DT) {
       this.gameControls.Update();
-      SceneUpdate(this.FIXED_DT, this.state);
+      SceneUpdate(this.FIXED_DT, this.joints);
       this.accumulator -= this.FIXED_DT;
     }
     Renderer.render(Scene, Camera);
@@ -62,11 +61,11 @@ export class Engine
   
   SetRotateSpeed(v)
   {
-    this.state.ui.rotateSpeed = v;
+    this.joints.Set("debug.rotateSpeed", v);
   }
 
   SetMoveSpeed(v)
   {
-    this.state.ui.moveSpeed = v;
+    this.joints.Set("debug.moveSpeed", v);
   }
 }

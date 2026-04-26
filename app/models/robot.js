@@ -161,7 +161,7 @@ export class Robot
     this.root.rotateZ(angle);
   }
 
-  Update(dt, state)
+  Update(dt, joints)
   {
     // // arms swing opposite
     // this.leftArm.Update(dt, (i, t) =>

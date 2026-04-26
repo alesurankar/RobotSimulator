@@ -34,12 +34,12 @@ export class TestScene extends BaseScene
     this.scene.add(ground);
   }
 
-  Update(dt, state) 
+  Update(dt, joints) 
   {
-    super.Update(dt, state);
+    super.Update(dt, joints);
 
-    const r = state.ui.rotateSpeed;
-    const m = state.ui.moveSpeed; 
+    const r = joints.Get("debug.rotateSpeed");
+    const m = joints.Get("debug.moveSpeed");
 
     if (this.robot) {
       this.robot.RotateY(r * dt);

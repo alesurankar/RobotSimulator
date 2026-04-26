@@ -23,8 +23,7 @@ export class JointRegistry
   // Register joint
   Register(path, defaultValue = 0) 
   {
-    if (!this.values.has(path)) 
-    {
+    if (!this.values.has(path)) {
       this.values.set(path, defaultValue);
     }
   }
@@ -33,8 +32,7 @@ export class JointRegistry
   Dump() 
   {
     console.log("JointRegistry:");
-    for (const [k, v] of this.values.entries()) 
-    {
+    for (const [k, v] of this.values.entries()) {
       console.log(`${k} = ${v}`);
     }
   }
