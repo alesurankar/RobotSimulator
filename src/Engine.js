@@ -58,14 +58,4 @@ export class Engine
   {
     this.gameControls.ToggleLock();
   }
-  
-  SetRotateSpeed(v)
-  {
-    this.joints.Set("debug.rotateSpeed", v);
-  }
-
-  SetMoveSpeed(v)
-  {
-    this.joints.Set("debug.moveSpeed", v);
-  }
 }

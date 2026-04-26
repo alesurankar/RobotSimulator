@@ -22,10 +22,10 @@ export class UI
       });
     }
     this.AddSlider("Rotate Speed", 0, 5, 0, (v) => {
-      this.engine.SetRotateSpeed(v);
+      this.engine.joints.Set("locomotion.rotateSpeed", v);
     });
     this.AddSlider("Move Speed", 0, 10, 0, (v) => {
-      this.engine.SetMoveSpeed(v);
+      this.engine.joints.Set("locomotion.moveSpeed", v);
     });
     this.AddSlider("Left Shoulder", 0, 10, 0, (v) => {
       this.engine.joints.Set("leftShoulder.rotate", v);

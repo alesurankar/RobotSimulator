@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { BaseScene } from "./baseScene.js"
 import { Robot } from "../models/robot.js";
+import { Locomotion } from "../../core/locomotion.js";
 
 
 export class TestScene extends BaseScene
@@ -13,6 +14,8 @@ export class TestScene extends BaseScene
       lookAt: { x: 0, y: 0, z: 0 },
       fov: 40
     };
+    this.locomotion = null;
+    this.robot = null;
   }
 
   CreateObjects()
@@ -20,6 +23,8 @@ export class TestScene extends BaseScene
     this.robot = new Robot();
     this.scene.add(this.robot.root);
     this.objects.push(this.robot);
+
+    this.locomotion = new Locomotion(this.robot);
 
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),
@@ -37,13 +42,6 @@ export class TestScene extends BaseScene
   Update(dt, joints) 
   {
     super.Update(dt, joints);
-
-    const r = joints.Get("debug.rotateSpeed");
-    const m = joints.Get("debug.moveSpeed");
-
-    if (this.robot) {
-      this.robot.RotateY(r * dt);
-      this.robot.MoveLocal(0, 0, m * dt);
-    }
+    this.locomotion.Update(dt, joints);
   }
 }
