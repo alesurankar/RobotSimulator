@@ -31,12 +31,17 @@ export class PoseSystem
       ["leftKnee.stretch", "leftKnee.stretch"],
       ["rightKnee.stretch", "rightKnee.stretch"],
       // Arms
-      ["leftShoulder.pitch", "leftShoulder.pitch"],
-      ["leftShoulder.yaw", "leftShoulder.yaw"],
+      ["leftShoulder.roll", "leftShoulder.roll"],
+      ["leftShoulder.stretch", "leftShoulder.stretch"],
       ["leftElbow.stretch", "leftElbow.stretch"],
-      ["rightShoulder.pitch", "rightShoulder.pitch"],
-      ["rightShoulder.yaw", "rightShoulder.yaw"],
+      ["leftWrist.roll", "leftWrist.roll"],
+      ["leftWrist.stretch", "leftWrist.stretch"],
+      
+      ["rightShoulder.roll", "rightShoulder.roll"],
+      ["rightShoulder.stretch", "rightShoulder.stretch"],
       ["rightElbow.stretch", "rightElbow.stretch"],
+      ["rightWrist.roll", "rightWrist.roll"],
+      ["rightWrist.stretch", "rightWrist.stretch"],
     ];
 
     for (const [key, jointName] of limbs) {

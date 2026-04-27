@@ -34,12 +34,17 @@ export class UI
       { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50 },
 
       // Arms
-      { label: "Left Shoulder Pitch", key: "leftShoulder.pitch", min: 10, max: 90, default: 50 },
-      { label: "Left Shoulder Yaw", key: "leftShoulder.yaw", min: 10, max: 90, default: 50 },
-      { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 95, default: 50 },
-      { label: "Right Shoulder Pitch", key: "rightShoulder.pitch", min: 10, max: 90, default: 50 },
-      { label: "Right Shoulder Yaw", key: "rightShoulder.yaw", min: 10, max: 90, default: 50 },
-      { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 95, default: 50 },
+      { label: "Left Shoulder Roll", key: "leftShoulder.roll", min: 10, max: 90, default: 50 },
+      { label: "Left Shoulder", key: "leftShoulder.stretch", min: 10, max: 90, default: 50 },
+      { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 90, default: 50 },
+      { label: "Left Wrist Roll", key: "leftWrist.roll", min: 0, max: 55, default: 50 },
+      { label: "Left Wrist", key: "leftWrist.stretch", min: 35, max: 80, default: 50 },
+
+      { label: "Right Shoulder Roll", key: "rightShoulder.roll", min: 10, max: 90, default: 50 },
+      { label: "Right Shoulder", key: "rightShoulder.stretch", min: 10, max: 90, default: 50 },
+      { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 90, default: 50 },
+      { label: "Right Wrist Roll", key: "rightWrist.roll", min: 0, max: 55, default: 50 },
+      { label: "Right Wrist", key: "rightWrist.stretch", min: 35, max: 80, default: 50 },
     ];
     poseControls.forEach(c => {
       this.AddSlider(c.label, c.min, c.max, c.default, v => {

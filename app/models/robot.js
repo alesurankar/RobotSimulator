@@ -38,9 +38,14 @@ export class Robot
           length: 3.6,
           axis: new THREE.Vector3(1, 0, 0),
         },
-        // Hand DOF 1
+        // Hand DOF 2
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 1, 0),
+        },
         {
           length: 2,
+          axis: new THREE.Vector3(1, 0, 0),
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -65,9 +70,14 @@ export class Robot
           length: 3.6,
           axis: new THREE.Vector3(1, 0, 0),
         },
-        // Hand DOF 1
+        // Hand DOF 2
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 1, 0),
+        },
         {
           length: 2,
+          axis: new THREE.Vector3(1, 0, 0),
         }
       ],
       parent: this.torso.joints[4].pivot,
