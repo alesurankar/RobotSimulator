@@ -1,3 +1,5 @@
+import { Moves } from "./app/moves/moves.js";
+
 export class UI
 {
   constructor(engine) 
@@ -11,6 +13,20 @@ export class UI
 
   Build()
   {
+    this.AddButton("Wave", () => {
+      this.engine.PlayMove(Moves.wave, 1.0);
+    });
+
+    this.AddButton("Punch", () => {
+      this.engine.PlayMove(Moves.punch, 1.0);
+    });
+
+    this.AddButton("Idle", () => {
+      this.engine.PlayMove(Moves.idle, 0.5);
+    });
+
+    
+
     const isTouch = navigator.maxTouchPoints > 0;
 
     if (!isTouch) {

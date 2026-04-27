@@ -31,10 +31,6 @@ export class TestScene extends BaseScene
     this.locomotion = new Locomotion(this.robot);
     this.poseSystem = new PoseSystem(this.robot);
     this.animator = new Animator();
-    this.animator.Play({
-      "leftShoulder.vertical": 80,
-      "leftElbow.stretch": 90
-    }, 1.0);
 
     // Legs 
     this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[1]);

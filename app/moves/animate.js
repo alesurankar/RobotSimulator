@@ -2,6 +2,7 @@ export class Animator
 {
   constructor()
   {
+    this.pending = null;
     this.active = null;
   }
 
@@ -12,9 +13,10 @@ export class Animator
 
   Update(dt, blackboard)
   {
+    // start animation
     if (this.pending) {
-      const startPose = {};
 
+      const startPose = {};
       for (const key of Object.keys(this.pending.targetPose)) {
         startPose[key] = blackboard.Get(key, 50);
       }
