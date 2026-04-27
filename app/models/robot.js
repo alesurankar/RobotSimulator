@@ -39,17 +39,14 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
-        // Shoulder DOF 1
-        { length: 0, axis: new THREE.Vector3(1, 0, 0) },
-
-        // Shoulder DOF 2
-        { length: 0, axis: new THREE.Vector3(0, 0, 1) },
-
-        // Shoulder DOF 3
-        { length: 0, axis: new THREE.Vector3(0, 1, 0) },
+        {
+          length: 0,
+          isJoint: true,
+          dof: 3,
+          restRotation: new THREE.Euler(-0.3, 0, -1.2),
+        },
         {
           length: 3.8,
-          restRotation: new THREE.Euler(-0.3, 0, -1.2),
         },
         {
           length: 3.6,
@@ -67,20 +64,16 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
-        // Shoulder DOF 1
-        { length: 0, 
-          restRotation: new THREE.Euler(0, 0, 0),
-          axis: new THREE.Vector3(-1, 0, 0) 
-        },
-
-        // Shoulder DOF 2
-        { length: 0, 
-          restRotation: new THREE.Euler(0, 0, 1.2),
-          axis: new THREE.Vector3(0, 0, -1) 
-        },
-
         // Shoulder DOF 3
-        { length: 3.8, axis: new THREE.Vector3(0, -1, 0) },
+        { 
+          length: 0, 
+          isJoint: true,
+          dof: 3,
+          restRotation: new THREE.Euler(0.3, 0, 1.2),
+        },
+        { 
+          length: 3.8,
+        },
         {
           length: 3.6,
           restRotation: new THREE.Euler(0, 0, 0.2)
