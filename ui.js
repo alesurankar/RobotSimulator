@@ -22,23 +22,25 @@ export class UI
       { label: "Rotate Speed", key: "locomotion.rotateSpeed", min: 0, max: 5, default: 0 },
       { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0 },
     ];
-
-    const poseControls  = [
-      { label: "Left Knee", key: "leftKnee.stretch", min: 0, max: 100, default: 0 },
-      { label: "Right Knee", key: "rightKnee.stretch", min: 0, max: 100, default: 0 },
-
-      { label: "Left Shoulder Pitch", key: "leftShoulder.pitch", min: 10, max: 90, default: 50 },
-      { label: "Left Shoulder Yaw", key: "leftShoulder.yaw", min: 10, max: 90, default: 50 },
-
-      { label: "Right Shoulder Pitch", key: "rightShoulder.pitch", min: 10, max: 90, default: 50 },
-      { label: "Right Shoulder Yaw", key: "rightShoulder.yaw", min: 10, max: 90, default: 50 },
-    ];
-
     locomotionControls.forEach(c => {
       this.AddSlider(c.label, c.min, c.max, c.default, v => {
         this.engine.blackboard.Set(c.key, v);
       });
     });
+
+    const poseControls  = [
+      // Legs
+      { label: "Left Knee", key: "leftKnee.stretch", min: 8, max: 50, default: 50 },
+      { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50 },
+
+      // Arms
+      { label: "Left Shoulder Pitch", key: "leftShoulder.pitch", min: 10, max: 90, default: 50 },
+      { label: "Left Shoulder Yaw", key: "leftShoulder.yaw", min: 10, max: 90, default: 50 },
+      { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 95, default: 50 },
+      { label: "Right Shoulder Pitch", key: "rightShoulder.pitch", min: 10, max: 90, default: 50 },
+      { label: "Right Shoulder Yaw", key: "rightShoulder.yaw", min: 10, max: 90, default: 50 },
+      { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 95, default: 50 },
+    ];
     poseControls.forEach(c => {
       this.AddSlider(c.label, c.min, c.max, c.default, v => {
         this.engine.blackboard.Set(c.key, v);

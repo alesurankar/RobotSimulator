@@ -26,35 +26,23 @@ export class PoseSystem
 
   Update(dt, blackboard) 
   {
-    // ---- KNEES ----
-    const lk = blackboard.Get("leftKnee.stretch", 0);
-    const rk = blackboard.Get("rightKnee.stretch", 0);
-
-    const maxBend = Math.PI * 0.8;
-
-    if (this.joints.leftKnee) {
-      this.joints.leftKnee.SetRotation(-lk / 100 * maxBend);
-    }
-
-    if (this.joints.rightKnee) {
-      this.joints.rightKnee.SetRotation(-rk / 100 * maxBend);
-    }
-
-    // ---- SHOULDERS ----
-    const shoulder = [
+    const limbs = [
+      // legs 
+      ["leftKnee.stretch", "leftKnee.stretch"],
+      ["rightKnee.stretch", "rightKnee.stretch"],
+      // Arms
       ["leftShoulder.pitch", "leftShoulder.pitch"],
       ["leftShoulder.yaw", "leftShoulder.yaw"],
-
+      ["leftElbow.stretch", "leftElbow.stretch"],
       ["rightShoulder.pitch", "rightShoulder.pitch"],
       ["rightShoulder.yaw", "rightShoulder.yaw"],
+      ["rightElbow.stretch", "rightElbow.stretch"],
     ];
 
-    for (const [key, jointName] of shoulder) {
+    for (const [key, jointName] of limbs) {
       const value = blackboard.Get(key, 50);
-
       const joint = this.joints[jointName];
       if (!joint) continue;
-
       joint.SetRotation(this.MapToJoint(joint, value));
     }
   }

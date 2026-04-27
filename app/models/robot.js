@@ -31,10 +31,12 @@ export class Robot
         },
         {
           length: 3.8,
+          axis: new THREE.Vector3(0, 0, 1),
         },
         // Arm DOF 1
         {
           length: 3.6,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         // Hand DOF 1
         {
@@ -56,10 +58,12 @@ export class Robot
         },
         { 
           length: 3.8,
+          axis: new THREE.Vector3(0, 0, 1),
         },
         // Arm DOF 1
         {
           length: 3.6,
+          axis: new THREE.Vector3(1, 0, 0),
         },
         // Hand DOF 1
         {
