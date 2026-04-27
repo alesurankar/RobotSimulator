@@ -24,14 +24,18 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
-        // Shoulder DOF 2
+        // Shoulder DOF 3
         {
           length: 0,
-          axis: new THREE.Vector3(0, 1, 0),
+          axis: new THREE.Vector3(1, 0, 0),
+        },
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, 1),
         },
         {
           length: 3.8,
-          axis: new THREE.Vector3(0, 0, 1),
+          axis: new THREE.Vector3(0, 1, 0),
         },
         // Arm DOF 1
         {
@@ -56,14 +60,17 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
-        // Shoulder DOF 2
-        { 
-          length: 0, 
-          axis: new THREE.Vector3(0, 1, 0),
+        {
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
         },
-        { 
-          length: 3.8,
+        {
+          length: 0,
           axis: new THREE.Vector3(0, 0, 1),
+        },
+        {
+          length: 3.8,
+          axis: new THREE.Vector3(0, 1, 0),
         },
         // Arm DOF 1
         {

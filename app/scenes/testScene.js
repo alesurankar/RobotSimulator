@@ -34,17 +34,19 @@ export class TestScene extends BaseScene
     this.poseSystem.RegisterJoint("rightKnee.stretch", this.robot.rightLeg.joints[1]);
     
     // Arms
-    this.poseSystem.RegisterJoint("leftShoulder.roll", this.robot.leftArm.joints[0]);
-    this.poseSystem.RegisterJoint("leftShoulder.stretch",   this.robot.leftArm.joints[1]);
-    this.poseSystem.RegisterJoint("leftElbow.stretch",  this.robot.leftArm.joints[2]);
-    this.poseSystem.RegisterJoint("leftWrist.roll",  this.robot.leftArm.joints[3]);
-    this.poseSystem.RegisterJoint("leftWrist.stretch",  this.robot.leftArm.joints[4]);
+    this.poseSystem.RegisterJoint("leftShoulder.horizontal", this.robot.leftArm.joints[0]);
+    this.poseSystem.RegisterJoint("leftShoulder.vertical", this.robot.leftArm.joints[1]);
+    this.poseSystem.RegisterJoint("leftShoulder.roll",   this.robot.leftArm.joints[2]);
+    this.poseSystem.RegisterJoint("leftElbow.stretch",  this.robot.leftArm.joints[3]);
+    this.poseSystem.RegisterJoint("leftWrist.roll",  this.robot.leftArm.joints[4]);
+    this.poseSystem.RegisterJoint("leftWrist.stretch",  this.robot.leftArm.joints[5]);
 
-    this.poseSystem.RegisterJoint("rightShoulder.roll", this.robot.rightArm.joints[0]);
-    this.poseSystem.RegisterJoint("rightShoulder.stretch",   this.robot.rightArm.joints[1]);
-    this.poseSystem.RegisterJoint("rightElbow.stretch",  this.robot.rightArm.joints[2]);
-    this.poseSystem.RegisterJoint("rightWrist.roll",  this.robot.rightArm.joints[3]);
-    this.poseSystem.RegisterJoint("rightWrist.stretch",  this.robot.rightArm.joints[4]);
+    this.poseSystem.RegisterJoint("rightShoulder.horizontal", this.robot.rightArm.joints[0]);
+    this.poseSystem.RegisterJoint("rightShoulder.vertical",   this.robot.rightArm.joints[1]);
+    this.poseSystem.RegisterJoint("rightShoulder.roll",   this.robot.rightArm.joints[2]);
+    this.poseSystem.RegisterJoint("rightElbow.stretch",  this.robot.rightArm.joints[3]);
+    this.poseSystem.RegisterJoint("rightWrist.roll",  this.robot.rightArm.joints[4]);
+    this.poseSystem.RegisterJoint("rightWrist.stretch",  this.robot.rightArm.joints[5]);
 
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),

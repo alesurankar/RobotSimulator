@@ -31,14 +31,16 @@ export class PoseSystem
       ["leftKnee.stretch", "leftKnee.stretch"],
       ["rightKnee.stretch", "rightKnee.stretch"],
       // Arms
+      ["leftShoulder.horizontal", "leftShoulder.horizontal"],
+      ["leftShoulder.vertical", "leftShoulder.vertical"],
       ["leftShoulder.roll", "leftShoulder.roll"],
-      ["leftShoulder.stretch", "leftShoulder.stretch"],
       ["leftElbow.stretch", "leftElbow.stretch"],
       ["leftWrist.roll", "leftWrist.roll"],
       ["leftWrist.stretch", "leftWrist.stretch"],
-      
+
+      ["rightShoulder.horizontal", "rightShoulder.horizontal"],
+      ["rightShoulder.vertical", "rightShoulder.vertical"],
       ["rightShoulder.roll", "rightShoulder.roll"],
-      ["rightShoulder.stretch", "rightShoulder.stretch"],
       ["rightElbow.stretch", "rightElbow.stretch"],
       ["rightWrist.roll", "rightWrist.roll"],
       ["rightWrist.stretch", "rightWrist.stretch"],
