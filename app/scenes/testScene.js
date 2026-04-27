@@ -3,6 +3,7 @@ import { BaseScene } from "./baseScene.js"
 import { Robot } from "../models/robot.js";
 import { Locomotion } from "../../core/locomotion.js";
 import { PoseSystem } from "../../core/poseSystem.js";
+import { Animator } from "../moves/animate.js";
 
 
 export class TestScene extends BaseScene
@@ -17,6 +18,7 @@ export class TestScene extends BaseScene
     };
     this.locomotion = null;
     this.poseSystem = null;
+    this.animator = null;
     this.robot = null;
   }
 
@@ -28,6 +30,11 @@ export class TestScene extends BaseScene
 
     this.locomotion = new Locomotion(this.robot);
     this.poseSystem = new PoseSystem(this.robot);
+    this.animator = new Animator();
+    this.animator.Play({
+      "leftShoulder.vertical": 80,
+      "leftElbow.stretch": 90
+    }, 1.0);
 
     // Legs 
     this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[1]);
@@ -63,6 +70,7 @@ export class TestScene extends BaseScene
   Update(dt, blackboard) 
   {
     super.Update(dt, blackboard);
+    this.animator.Update(dt, blackboard);
     this.locomotion.Update(dt, blackboard);
     this.poseSystem.Update(dt, blackboard);
   }

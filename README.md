@@ -56,6 +56,9 @@ RobotSimulator/
 │   │   ├─ link.js
 │   │   └─ robot.js
 │   │
+│   ├─ moves/
+│   │   └─ animate.js
+│   │
 │   ├─ scenes/
 │   │   ├─ baseScene.js
 │   │   └─ testScene.js
