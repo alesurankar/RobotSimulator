@@ -34,7 +34,7 @@ export class Engine
   {
     now /= 1000;
 
-    const frameTime = now - this.lastTime;
+    const frameTime = Math.min(now - this.lastTime, 0.1);
     this.lastTime = now;
     this.accumulator += frameTime;
 
