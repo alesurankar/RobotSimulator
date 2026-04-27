@@ -36,7 +36,6 @@ export class Engine
 
     const frameTime = now - this.lastTime;
     this.lastTime = now;
-
     this.accumulator += frameTime;
 
     // Fixed-step updates
