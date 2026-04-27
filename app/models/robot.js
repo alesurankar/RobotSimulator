@@ -11,12 +11,12 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
-        { name: "spine0", length: 2.0 },
-        { name: "spine1", length: 1.6 },
-        { name: "spine2", length: 1.6 },
-        { name: "spine3", length: 1.6 },
-        { name: "shoulderAnchor", length: 1 },
-        { name: "head", length: 2.7, thickness: 2.0, shape: "sphere" }
+        { length: 2.0 },
+        { length: 1.6 },
+        { length: 1.6 },
+        { length: 1.6 },
+        { length: 1 },
+        { length: 2.7, thickness: 2.0, shape: "sphere" }
       ],
       parent: this.model
     });
@@ -24,24 +24,24 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
+        // Shoulder DOF 2
         {
           length: 0,
-          isJoint: true,
-          dof: 3,
-          restRotation: new THREE.Euler(-0.3, 0, -1.2),
+          axis: new THREE.Vector3(0, 1, 0),
         },
         {
           length: 3.8,
         },
+        // Arm DOF 1
         {
           length: 3.6,
-          restRotation: new THREE.Euler(0.4, 0, -0.2)
         },
+        // Hand DOF 1
         {
           length: 2,
         }
       ],
-      parent: this.torso.joints["shoulderAnchor"].pivot,
+      parent: this.torso.joints[4].pivot,
       rotation: new THREE.Euler(0, 0, -Math.PI/2),
       position: new THREE.Vector3(1, 0, 0) 
     });
@@ -49,25 +49,24 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
-        // Shoulder DOF 3
+        // Shoulder DOF 2
         { 
           length: 0, 
-          isJoint: true,
-          dof: 3,
-          restRotation: new THREE.Euler(0.3, 0, 1.2),
+          axis: new THREE.Vector3(0, 1, 0),
         },
         { 
           length: 3.8,
         },
+        // Arm DOF 1
         {
           length: 3.6,
-          restRotation: new THREE.Euler(0, 0, 0.2)
         },
+        // Hand DOF 1
         {
           length: 2,
         }
       ],
-      parent: this.torso.joints["shoulderAnchor"].pivot,
+      parent: this.torso.joints[4].pivot,
       rotation: new THREE.Euler(0, 0, Math.PI/2),
       position: new THREE.Vector3(-1, 0, 0)
     });

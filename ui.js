@@ -23,37 +23,26 @@ export class UI
       { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0 },
     ];
 
+    const poseControls  = [
+      { label: "Left Knee", key: "leftKnee.stretch", min: 0, max: 100, default: 0 },
+      { label: "Right Knee", key: "rightKnee.stretch", min: 0, max: 100, default: 0 },
+
+      { label: "Left Shoulder Pitch", key: "leftShoulder.pitch", min: 10, max: 90, default: 50 },
+      { label: "Left Shoulder Yaw", key: "leftShoulder.yaw", min: 10, max: 90, default: 50 },
+
+      { label: "Right Shoulder Pitch", key: "rightShoulder.pitch", min: 10, max: 90, default: 50 },
+      { label: "Right Shoulder Yaw", key: "rightShoulder.yaw", min: 10, max: 90, default: 50 },
+    ];
+
     locomotionControls.forEach(c => {
       this.AddSlider(c.label, c.min, c.max, c.default, v => {
         this.engine.blackboard.Set(c.key, v);
       });
     });
-
-    this.AddJointControl("Left Knee", "leftKnee", ["stretch"]);
-    this.AddJointControl("Right Knee", "rightKnee", ["stretch"]);
-
-    this.AddJointControl("Left Shoulder", "leftShoulder", ["pitch", "yaw", "roll"]);
-    this.AddJointControl("Right Shoulder", "rightShoulder", ["pitch", "yaw", "roll"]);
-  }
-
-  AddJointControl(label, jointName, axes = ["pitch"])
-  {
-    if (!Array.isArray(axes)) {
-      axes = ["pitch"];
-    }
-
-    axes.forEach(axis => {
-      const key = `${jointName}.${axis}`;
-
-      this.AddSlider(
-        `${label} ${axis}`,
-        0,
-        100,
-        50,
-        v => {
-          this.engine.blackboard.Set(key, v);
-        }
-      );
+    poseControls.forEach(c => {
+      this.AddSlider(c.label, c.min, c.max, c.default, v => {
+        this.engine.blackboard.Set(c.key, v);
+      });
     });
   }
 

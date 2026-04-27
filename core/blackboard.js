@@ -2,20 +2,17 @@ export class Blackboard
 {
   constructor() 
   {
+    // flat storage of all joint values
     this.values = new Map();
   }
 
+  // SET value
   Set(path, value) 
   {
-    // If path is object key (joint-style)
-    if (typeof value === "object") {
-      this.values.set(path, value);
-      return;
-    }
-    // flat key mode (legacy support)
     this.values.set(path, value);
   }
 
+  // GET value
   Get(path, defaultValue = 0) 
   {
     return this.values.has(path)
@@ -23,23 +20,15 @@ export class Blackboard
       : defaultValue;
   }
 
-  SetAxis(joint, axis, value) 
+  // Register joint
+  Register(path, defaultValue = 0) 
   {
-    const current = this.values.get(joint) || {
-      pitch: 50,
-      yaw: 50,
-      roll: 50
-    };
-    current[axis] = value;
-
-    this.values.set(joint, current);
+    if (!this.values.has(path)) {
+      this.values.set(path, defaultValue);
+    }
   }
 
-  GetJoint(joint, defaultValue = null) 
-  {
-    return this.values.get(joint) ?? defaultValue;
-  }
-
+  // Debug helper
   Dump() 
   {
     console.log("Blackboard:");
@@ -48,6 +37,7 @@ export class Blackboard
     }
   }
 
+  // List all keys
   Keys() 
   {
     return Array.from(this.values.keys());
