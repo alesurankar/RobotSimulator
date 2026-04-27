@@ -39,7 +39,8 @@ export class Limb
       // LINK
       const link = new Link({
         length: segment.length,
-        thickness: segment.thickness ?? 0.5,
+        width: segment.width ?? 0.5,
+        depth: segment.depth ?? 0.5,
         color: segment.color ?? 0xC9B903,
         shape: segment.shape,
         parent: joint.pivot

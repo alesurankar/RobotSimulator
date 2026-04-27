@@ -11,12 +11,12 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
-        { length: 2.0 },
-        { length: 1.6 },
-        { length: 1.6 },
-        { length: 1.6 },
-        { length: 1 },
-        { length: 2.7, thickness: 2.0, shape: "sphere" }
+        { length: 2.0, width: 1.6, depth: 1.6, shape: "sphere"},
+        { length: 1.6, width: 0.8, depth: 0.8, shape: "cylinder"},
+        { length: 1.6, width: 1.2, depth: 0.8, shape: "cylinder"},
+        { length: 1.6, width: 2.4, depth: 2.4, shape: "sphere"},
+        { length: 1, width: 0.6, depth: 0.6, },
+        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere" }
       ],
       parent: this.model
     });
@@ -35,11 +35,17 @@ export class Robot
         },
         {
           length: 3.8,
+          width: 0.6,
+          depth: 0.6,
+          shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
         },
         // Arm DOF 1
         {
           length: 3.6,
+          width: 0.4,
+          depth: 0.6,
+          shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
         // Hand DOF 2
@@ -49,6 +55,8 @@ export class Robot
         },
         {
           length: 2,
+          width: 1.2,
+          depth: 0.4,
           axis: new THREE.Vector3(1, 0, 0),
         }
       ],
@@ -70,11 +78,17 @@ export class Robot
         },
         {
           length: 3.8,
+          width: 0.6,
+          depth: 0.6,
+          shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
         },
         // Arm DOF 1
         {
           length: 3.6,
+          width: 0.4,
+          depth: 0.6,
+          shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
         // Hand DOF 2
@@ -84,6 +98,8 @@ export class Robot
         },
         {
           length: 2,
+          width: 1.2,
+          depth: 0.4,
           axis: new THREE.Vector3(1, 0, 0),
         }
       ],
@@ -97,16 +113,24 @@ export class Robot
       structure: [
         {
           length: 5.2,
+          width: 0.8,
+          depth: 0.9,
+          shape: "cylinder",
           restRotation: new THREE.Euler(0, 0, -3),
           min: -1,
           max: 1
         },
         {
           length: 4.7,
+          width: 0.6,
+          depth: 0.8,
+          shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
+          width: 0.4,
+          depth: 0.8,
           restRotation: new THREE.Euler(0, 1, Math.PI / 2)
         }
       ],
@@ -122,14 +146,22 @@ export class Robot
       structure: [
         {
           length: 5.2,
+          width: 0.8,
+          depth: 0.9,
+          shape: "cylinder",
           restRotation: new THREE.Euler(0, 0, 3)
         },
         {
           length: 4.7,
+          width: 0.6,
+          depth: 0.8,
+          shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
         {
           length: 2,
+          width: 0.4,
+          depth: 0.8,
           restRotation: new THREE.Euler(0, 2, Math.PI / 2)
         }
       ],
