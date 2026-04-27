@@ -1,5 +1,6 @@
 export const Moves = {
   idle: {
+    "leftShoulder.horizontal": 50,
     "leftShoulder.vertical": 50,
     "leftElbow.stretch": 50,
     "rightShoulder.vertical": 50,
@@ -7,7 +8,8 @@ export const Moves = {
   },
 
   wave: {
-    "leftShoulder.vertical": 80,
+    "leftShoulder.horizontal": 60,
+    "leftShoulder.vertical": 60,
     "leftElbow.stretch": 90
   },
 
