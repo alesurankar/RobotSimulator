@@ -6,7 +6,7 @@ export class Limb
 {
   constructor(
   {
-    structure = [{ length: 5 }, { length: 5 }],
+    structure = [],
     parent = null,
     axis = new THREE.Vector3(0, 0, 1),
     position = new THREE.Vector3(),
@@ -18,64 +18,71 @@ export class Limb
     this.root.rotation.copy(rotation);
     parent?.add(this.root);
 
-    this.joints = [];
+    this.joints = {};
     this.links = [];
 
     let currentParent = this.root;
 
     for (let i = 0; i < structure.length; i++) {
-      const segment = structure[i];
+      const s = structure[i];
 
       // MULTI-AXIS JOINT (NEW)
-      if (segment.isJoint && segment.dof > 1) {
+      if (s.isJoint) {
 
-        const jointGroup = {
-          axes: [],
-          SetRotation: (x, y, z) => {
-            if (jointGroup.axes[0]) jointGroup.axes[0].SetRotation(x);
-            if (jointGroup.axes[1]) jointGroup.axes[1].SetRotation(y);
-            if (jointGroup.axes[2]) jointGroup.axes[2].SetRotation(z);
+        const axes = s.axes ?? [
+          new THREE.Vector3(1, 0, 0),
+          new THREE.Vector3(0, 1, 0),
+          new THREE.Vector3(0, 0, 1)
+        ];
+
+        const joints = [];
+
+        for (let a = 0; a < (s.dof ?? 3); a++) {
+
+          const j = new Joint({
+            parent: currentParent,
+            axis: axes[a],
+            restRotation: s.restRotation ?? new THREE.Euler(),
+            minAngle: s.min ?? -Math.PI,
+            maxAngle: s.max ?? Math.PI
+          });
+
+          joints.push(j);
+        }
+
+        const jointAPI = {
+          joints,
+
+          SetRotation: (x = 0, y = 0, z = 0) => {
+            if (joints[0]) joints[0].SetRotation(x);
+            if (joints[1]) joints[1].SetRotation(y);
+            if (joints[2]) joints[2].SetRotation(z);
           }
         };
 
-        for (let i = 0; i < segment.dof; i++) {
-          const joint = new Joint({
-            parent: currentParent,
-            axis: segment.axes?.[i] ?? new THREE.Vector3(
-              i === 0 ? 1 : 0,
-              i === 1 ? 1 : 0,
-              i === 2 ? 1 : 0
-            ),
-            restRotation: segment.restRotation ?? new THREE.Euler(),
-            minAngle: segment.min ?? -Math.PI,
-            maxAngle: segment.max ?? Math.PI
-          });
+        this.joints[s.name] = jointAPI;
 
-          jointGroup.axes.push(joint);
-          this.joints.push(joint);
-        }
-
-        currentParent = jointGroup.axes[0].pivot;
-        this.joints.push(jointGroup);
+        currentParent = joints[0].pivot;
         continue;
       }
 
       // NORMAL JOINT (1 DOF)
       const joint = new Joint({
         parent: currentParent,
-        axis: segment.axis ?? axis,
-        restRotation: segment.restRotation ?? new THREE.Euler(),
-        minAngle: segment.min ?? -Math.PI,
-        maxAngle: segment.max ?? Math.PI
+        axis: s.axis ?? axis,
+        restRotation: s.restRotation ?? new THREE.Euler(),
+        minAngle: s.min ?? -Math.PI,
+        maxAngle: s.max ?? Math.PI
       });
-      this.joints.push(joint);
+
+      this.joints[s.name] = joint;
 
       // LINK
       const link = new Link({
-        length: segment.length,
-        thickness: segment.thickness ?? 0.5,
-        color: segment.color ?? 0xC9B903,
-        shape: segment.shape,
+        length: s.length,
+        thickness: s.thickness ?? 0.5,
+        color: s.color ?? 0xC9B903,
+        shape: s.shape,
         parent: joint.pivot
       });
       this.links.push(link);
@@ -85,22 +92,11 @@ export class Limb
     }
   }
 
-  Update(dt, fn)
-  {
-    const t = performance.now() * 0.001;
-
-    for (let i = 0; i < this.joints.length; i++) {
-      const joint = this.joints[i];
-
-      const value = fn ? fn(i, t) : 0;
-      joint.SetRotation(value);
-    }
-  }
+  Update(dt, fn) {}
 
   Dispose()
   {
     this.links.forEach(l => l?.Dispose());
-    this.joints.forEach(j => j?.Dispose());
     this.root.removeFromParent();
   }
 }

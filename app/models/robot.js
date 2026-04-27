@@ -11,27 +11,12 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
-        {
-          length: 2.0,
-        },
-        {
-          length: 1.6,
-        },
-        {
-          length: 1.6,
-        },
-        {
-          length: 1.6,
-        },
-        {
-          length: 1,
-        },
-        {
-          length: 2.7,
-          thickness: 2.0,
-          color: 0xC9B904,
-          shape: "sphere"
-        }
+        { name: "spine0", length: 2.0 },
+        { name: "spine1", length: 1.6 },
+        { name: "spine2", length: 1.6 },
+        { name: "spine3", length: 1.6 },
+        { name: "shoulderAnchor", length: 1 },
+        { name: "head", length: 2.7, thickness: 2.0, shape: "sphere" }
       ],
       parent: this.model
     });
@@ -56,7 +41,7 @@ export class Robot
           length: 2,
         }
       ],
-      parent: this.torso.joints[4].pivot,
+      parent: this.torso.joints["shoulderAnchor"].pivot,
       rotation: new THREE.Euler(0, 0, -Math.PI/2),
       position: new THREE.Vector3(1, 0, 0) 
     });
@@ -82,7 +67,7 @@ export class Robot
           length: 2,
         }
       ],
-      parent: this.torso.joints[4].pivot,
+      parent: this.torso.joints["shoulderAnchor"].pivot,
       rotation: new THREE.Euler(0, 0, Math.PI/2),
       position: new THREE.Vector3(-1, 0, 0)
     });
@@ -183,28 +168,6 @@ export class Robot
 
   Update(dt, blackboard)
   {
-    // // arms swing opposite
-    // this.leftArm.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + i * 0.5) * 0.6
-    // );
-
-    // this.rightArm.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + Math.PI + i * 0.5) * 0.6
-    // );
-
-    // // legs opposite to arms
-    // this.leftLeg.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + Math.PI + i * 0.6) * 0.3
-    // );
-
-    // this.rightLeg.Update(dt, (i, t) =>
-    //   Math.sin(t * 2 + i * 0.6) * 0.3
-    // );
-
-    // // torso subtle sway
-    // this.torso.Update(dt, (i, t) =>
-    //   Math.sin(t) * 0.1
-    // );
   }
 
   Dispose()

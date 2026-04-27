@@ -29,22 +29,22 @@ export class UI
       });
     });
 
-    this.AddJointControl("Left Knee", "leftKnee", {
-      singleAxis: true,
-      key: "stretch"
-    });
-    this.AddJointControl("Right Knee", "rightKnee", {
-      singleAxis: true,
-      key: "stretch"
-    });
-    this.AddJointControl("Left Shoulder", "leftShoulder");
-    this.AddJointControl("Right Shoulder", "rightShoulder");
+    this.AddJointControl("Left Knee", "leftKnee", ["stretch"]);
+    this.AddJointControl("Right Knee", "rightKnee", ["stretch"]);
+
+    this.AddJointControl("Left Shoulder", "leftShoulder", ["pitch", "yaw", "roll"]);
+    this.AddJointControl("Right Shoulder", "rightShoulder", ["pitch", "yaw", "roll"]);
   }
 
   AddJointControl(label, jointName, axes = ["pitch"])
   {
+    if (!Array.isArray(axes)) {
+      axes = ["pitch"];
+    }
+
     axes.forEach(axis => {
       const key = `${jointName}.${axis}`;
+
       this.AddSlider(
         `${label} ${axis}`,
         0,
