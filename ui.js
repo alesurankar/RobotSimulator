@@ -51,15 +51,15 @@ export class UI
     const rightArm = this.CreatePanel("Right Arm", 20, 200);
 
     this.AddButton("Wave", () => {
-      this.engine.PlayMove(Moves.wave, 1.0);
+      this.engine.PlayMove(Moves.wave);
     }, movesPanel);
 
     this.AddButton("Punch", () => {
-      this.engine.PlayMove(Moves.punch, 1.0);
+      this.engine.PlayMove(Moves.punch);
     }, movesPanel);
 
     this.AddButton("Idle", () => {
-      this.engine.PlayMove(Moves.idle, 0.5);
+      this.engine.PlayMove(Moves.idle);
     }, movesPanel);
 
     const controls  = [

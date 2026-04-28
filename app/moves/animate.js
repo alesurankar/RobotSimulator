@@ -13,7 +13,6 @@ export class Animator
 
   Update(dt, blackboard)
   {
-    // start animation
     if (this.pending) {
 
       const startPose = {};

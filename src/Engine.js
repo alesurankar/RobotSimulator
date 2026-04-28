@@ -57,7 +57,23 @@ export class Engine
   PlayMove(move, duration) 
   {
     console.log("PlayMove triggered", move);
-    this.scene?.animator?.Play(move, duration);
+    const flat = this.FlattenPose(move.pose);
+    this.scene?.animator?.Play(flat, move.duration);
+  }
+
+  FlattenPose(pose, prefix = "", out = {})
+  {
+    for (const key in pose) {
+      const value = pose[key];
+      const fullKey = prefix ? `${prefix}.${key}` : key;
+
+      if (value && typeof value === "object") {
+        this.FlattenPose(value, fullKey, out);
+      } else {
+        out[fullKey] = value;
+      }
+    }
+    return out;
   }
 
   Start() 
