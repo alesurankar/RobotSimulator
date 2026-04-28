@@ -33,8 +33,13 @@ export class TestScene extends BaseScene
     this.animator = new Animator();
 
     // Legs 
-    this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[1]);
-    this.poseSystem.RegisterJoint("rightKnee.stretch", this.robot.rightLeg.joints[1]);
+    this.poseSystem.RegisterJoint("leftHip.straight", this.robot.leftLeg.joints[0]);
+    this.poseSystem.RegisterJoint("leftHip.side", this.robot.leftLeg.joints[1]);
+    this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[2]);
+
+    this.poseSystem.RegisterJoint("rightHip.straight", this.robot.rightLeg.joints[0]);
+    this.poseSystem.RegisterJoint("rightHip.side", this.robot.rightLeg.joints[1]);
+    this.poseSystem.RegisterJoint("rightKnee.stretch", this.robot.rightLeg.joints[2]);
     
     // Arms
     this.poseSystem.RegisterJoint("leftShoulder.horizontal", this.robot.leftArm.joints[0]);

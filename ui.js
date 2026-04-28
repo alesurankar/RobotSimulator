@@ -69,9 +69,13 @@ export class UI
       { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0, panel: locomotion },
 
       // Left Leg
+      { label: "Left Hip Straight", key: "leftHip.straight", min: 40, max: 90, default: 50, panel: leftLeg },
+      { label: "Left Hip Side", key: "leftHip.side", min: 10, max: 60, default: 50, panel: leftLeg },
       { label: "Left Knee", key: "leftKnee.stretch", min: 8, max: 50, default: 50, panel: leftLeg },
       
       // Right Leg
+      { label: "Right Hip Straight", key: "rightHip.straight", min: 40, max: 90, default: 50, panel: rightLeg},
+      { label: "Right Hip Side", key: "rightHip.side", min: 10, max: 60, default: 50, panel: rightLeg},
       { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50, panel: rightLeg},
       
       // Left Arm

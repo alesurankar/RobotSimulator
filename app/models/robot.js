@@ -61,7 +61,7 @@ export class Robot
         }
       ],
       parent: this.torso.joints[4].pivot,
-      rotation: new THREE.Euler(0, 0, -Math.PI/2),
+      rotation: new THREE.Euler(0, 0, -2.6),
       position: new THREE.Vector3(1, 0, 0) 
     });
 
@@ -104,7 +104,7 @@ export class Robot
         }
       ],
       parent: this.torso.joints[4].pivot,
-      rotation: new THREE.Euler(0, 0, Math.PI/2),
+      rotation: new THREE.Euler(0, 0, 2.6),
       position: new THREE.Vector3(-1, 0, 0)
     });
 
@@ -112,13 +112,15 @@ export class Robot
     this.leftLeg = new Limb({
       structure: [
         {
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
+        },
+        {
           length: 5.2,
           width: 0.8,
           depth: 0.9,
           shape: "cylinder",
-          restRotation: new THREE.Euler(0, 0, -3),
-          min: -1,
-          max: 1
+          axis: new THREE.Vector3(0, 0, -1),
         },
         {
           length: 4.7,
@@ -135,9 +137,7 @@ export class Robot
         }
       ],
       parent: this.torso.root,
-      axis: new THREE.Vector3(0, 0, -1),
-      //rotation: new THREE.Euler(0, 0, -4*Math.PI/5),
-      rotation: new THREE.Euler(0, 0, 0),
+      rotation: new THREE.Euler(0, 0, -3),
       position: new THREE.Vector3(1, 0, 0) 
     });
 
@@ -145,11 +145,15 @@ export class Robot
     this.rightLeg = new Limb({
       structure: [
         {
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
+        },
+        {
           length: 5.2,
           width: 0.8,
           depth: 0.9,
           shape: "cylinder",
-          restRotation: new THREE.Euler(0, 0, 3)
+          axis: new THREE.Vector3(0, 0, 1),
         },
         {
           length: 4.7,
@@ -166,8 +170,7 @@ export class Robot
         }
       ],
       parent: this.torso.root,
-      axis: new THREE.Vector3(0, 0, -1),
-      rotation: new THREE.Euler(0, 0, 0),
+      rotation: new THREE.Euler(0, 0, 3),
       position: new THREE.Vector3(-1, 0, 0)
     });
     

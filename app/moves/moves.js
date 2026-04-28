@@ -19,8 +19,8 @@ export const Moves = {
 
   idle: {
     pose: {      
-      leftShoulder: { horizontal: 55, vertical: 35, roll: 50 },
-      leftElbow: { stretch: 45 },
+      leftShoulder: { horizontal: 45, vertical: 35, roll: 50 },
+      leftElbow: { stretch: 55 },
       leftWrist: { roll: 55, stretch: 50 },
 
       rightShoulder: { horizontal: 45, vertical: 65, roll: 50 },
