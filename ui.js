@@ -8,79 +8,103 @@ export class UI
     this.root = document.createElement("div");
     this.root.id = "ui";
     document.body.appendChild(this.root);
+    this.zIndexCounter = 1;
     this.Build();
+  }
+
+  CreatePanel(title, x = 20, y = 20)
+  {
+    const panel = document.createElement("div");
+    panel.className = "panel";
+    panel.style.left = x + "px";
+    panel.style.top = y + "px";
+
+    const header = document.createElement("div");
+    header.className = "panel-header";
+    header.textContent = title;
+
+    const content = document.createElement("div");
+    content.className = "panel-content";
+    content.style.display = "none";
+
+    panel.appendChild(header);
+    panel.appendChild(content);
+    this.root.appendChild(panel);
+    this.MakeDraggable(panel, header, content);
+
+    return content;
   }
 
   Build()
   {
+    const system = this.CreatePanel("System", 20, 20);
+
+    this.AddButton("Lock", () => {
+      this.engine.ToggleLock();
+    }, system);
+
+    const movesPanel = this.CreatePanel("Moves", 20, 50);
+    const locomotion = this.CreatePanel("Locomotion", 20, 80);
+    const leftLeg = this.CreatePanel("Left Leg", 20, 110);
+    const rightLeg = this.CreatePanel("Right Leg", 20, 140);
+    const leftArm = this.CreatePanel("Left Arm", 20, 170);
+    const rightArm = this.CreatePanel("Right Arm", 20, 200);
+
     this.AddButton("Wave", () => {
       this.engine.PlayMove(Moves.wave, 1.0);
-    });
+    }, movesPanel);
 
     this.AddButton("Punch", () => {
       this.engine.PlayMove(Moves.punch, 1.0);
-    });
+    }, movesPanel);
 
     this.AddButton("Idle", () => {
       this.engine.PlayMove(Moves.idle, 0.5);
-    });
+    }, movesPanel);
 
-    
+    const controls  = [
+      // Locomotion
+      { label: "Rotate Speed", key: "locomotion.rotateSpeed", min: 0, max: 5, default: 0, panel: locomotion },
+      { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0, panel: locomotion },
 
-    const isTouch = navigator.maxTouchPoints > 0;
+      // Left Leg
+      { label: "Left Knee", key: "leftKnee.stretch", min: 8, max: 50, default: 50, panel: leftLeg },
+      
+      // Right Leg
+      { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50, panel: rightLeg},
+      
+      // Left Arm
+      { label: "Left Shoulder Horizontal", key: "leftShoulder.horizontal", min: 10, max: 90, default: 50, panel: leftArm},
+      { label: "Left Shoulder Vertical", key: "leftShoulder.vertical", min: 10, max: 90, default: 50, panel: leftArm },
+      { label: "Left Shoulder Roll", key: "leftShoulder.roll", min: 10, max: 90, default: 50, panel: leftArm },
+      { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 90, default: 50, panel: leftArm },
+      { label: "Left Wrist Roll", key: "leftWrist.roll", min: 0, max: 55, default: 50, panel: leftArm },
+      { label: "Left Wrist", key: "leftWrist.stretch", min: 35, max: 80, default: 50, panel: leftArm },
 
-    if (!isTouch) {
-      this.AddButton("Lock", () => {
-        this.engine.ToggleLock();
-      });
-    }
-    const locomotionControls = [
-      { label: "Rotate Speed", key: "locomotion.rotateSpeed", min: 0, max: 5, default: 0 },
-      { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0 },
+      // Right Arm
+      { label: "Right Shoulder Horizontal", key: "rightShoulder.horizontal", min: 10, max: 90, default: 50, panel: rightArm },
+      { label: "Right Shoulder Vertical", key: "rightShoulder.vertical", min: 10, max: 90, default: 50, panel: rightArm },
+      { label: "Right Shoulder Roll", key: "rightShoulder.roll", min: 10, max: 90, default: 50, panel: rightArm },
+      { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 90, default: 50, panel: rightArm },
+      { label: "Right Wrist Roll", key: "rightWrist.roll", min: 0, max: 55, default: 50, panel: rightArm },
+      { label: "Right Wrist", key: "rightWrist.stretch", min: 35, max: 80, default: 50, panel: rightArm },
     ];
-    locomotionControls.forEach(c => {
+    controls.forEach(c => {
       this.AddSlider(c.label, c.min, c.max, c.default, v => {
         this.engine.blackboard.Set(c.key, v);
-      });
-    });
-
-    const poseControls  = [
-      // Legs
-      { label: "Left Knee", key: "leftKnee.stretch", min: 8, max: 50, default: 50 },
-      { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50 },
-
-      // Arms
-      { label: "Left Shoulder Horizontal", key: "leftShoulder.horizontal", min: 10, max: 90, default: 50 },
-      { label: "Left Shoulder Vertical", key: "leftShoulder.vertical", min: 10, max: 90, default: 50 },
-      { label: "Left Shoulder Roll", key: "leftShoulder.roll", min: 10, max: 90, default: 50 },
-      { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 90, default: 50 },
-      { label: "Left Wrist Roll", key: "leftWrist.roll", min: 0, max: 55, default: 50 },
-      { label: "Left Wrist", key: "leftWrist.stretch", min: 35, max: 80, default: 50 },
-
-      { label: "Right Shoulder Horizontal", key: "rightShoulder.horizontal", min: 10, max: 90, default: 50 },
-      { label: "Right Shoulder Vertical", key: "rightShoulder.vertical", min: 10, max: 90, default: 50 },
-      { label: "Right Shoulder Roll", key: "rightShoulder.roll", min: 10, max: 90, default: 50 },
-      { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 90, default: 50 },
-      { label: "Right Wrist Roll", key: "rightWrist.roll", min: 0, max: 55, default: 50 },
-      { label: "Right Wrist", key: "rightWrist.stretch", min: 35, max: 80, default: 50 },
-    ];
-    poseControls.forEach(c => {
-      this.AddSlider(c.label, c.min, c.max, c.default, v => {
-        this.engine.blackboard.Set(c.key, v);
-      });
+      }, c.panel);
     });
   }
 
-  AddButton(label, onClick) 
+  AddButton(label, onClick, parent = this.root) 
   {
     const btn = document.createElement("button");
     btn.textContent = label;
     btn.onclick = onClick;
-    this.root.appendChild(btn);
-    return btn;
+    parent.appendChild(btn);
   }
 
-  AddSlider(label, min, max, value, onInput) 
+  AddSlider(label, min, max, value, onInput, parent = this.root)
   {
     const container = document.createElement("div");
 
@@ -101,8 +125,60 @@ export class UI
 
     container.appendChild(text);
     container.appendChild(input);
-    this.root.appendChild(container);
+    parent.appendChild(container);
+  }
 
-    return input;
+  MakeDraggable(panel, handle, content)
+  {
+    let isDown = false;
+    let startX = 0;
+    let startY = 0;
+    let offsetX = 0;
+    let offsetY = 0;
+    const DRAG_THRESHOLD = 5; 
+
+    const onMouseMove = (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+
+      if (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD) {
+        panel.style.left = (e.clientX - offsetX) + "px";
+        panel.style.top = (e.clientY - offsetY) + "px";
+        panel.dataset.dragged = "true";
+      }
+    };
+
+    const onMouseUp = () => {
+      if (!isDown) return;
+      isDown = false;
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+
+      const dragged = panel.dataset.dragged === "true";
+
+      if (!dragged) {
+        content.style.display =
+          content.style.display === "none" ? "block" : "none";
+      }
+
+      panel.dataset.dragged = "false";
+    };
+
+    handle.addEventListener("mousedown", (e) => {
+      isDown = true;
+      startX = e.clientX;
+      startY = e.clientY;
+
+      offsetX = e.clientX - panel.offsetLeft;
+      offsetY = e.clientY - panel.offsetTop;
+
+      panel.dataset.dragged = "false";
+
+      panel.style.zIndex = ++this.zIndexCounter;
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    });
   }
 }

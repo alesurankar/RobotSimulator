@@ -14,21 +14,45 @@ html, body {
 
 #ui {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  inset: 0;
+  pointer-events: none;
+}
+
+.panel {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 
   width: 200px;
-  max-height: 90vh;
-
-  overflow-y: auto;
-
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px;
+  background: rgba(0,0,0,0.7);
   border-radius: 8px;
-
   color: white;
-  font-family: sans-serif;
   font-size: 12px;
+
+  pointer-events: auto;
+}
+
+.panel-header {
+  background: rgba(255,255,255,0.1);
+  padding: 6px;
+  cursor: grab;
+  user-select: none;
+  font-weight: bold;
+  cursor: grab;
+}
+
+.panel-header:active {
+  cursor: grabbing;
+}
+
+.panel-content {
+  padding: 6px;
+}
+
+.panel button,
+.panel input {
+  width: 100%;
+  margin-top: 6px;
 }
 
 #ui button,
