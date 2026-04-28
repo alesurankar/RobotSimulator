@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+
 export class PoseSystem 
 {
   constructor(robot) 
@@ -26,30 +27,13 @@ export class PoseSystem
 
   Update(dt, blackboard) 
   {
-    const limbs = [
-      // legs 
-      ["leftKnee.stretch", "leftKnee.stretch"],
-      ["rightKnee.stretch", "rightKnee.stretch"],
-      // Arms
-      ["leftShoulder.horizontal", "leftShoulder.horizontal"],
-      ["leftShoulder.vertical", "leftShoulder.vertical"],
-      ["leftShoulder.roll", "leftShoulder.roll"],
-      ["leftElbow.stretch", "leftElbow.stretch"],
-      ["leftWrist.roll", "leftWrist.roll"],
-      ["leftWrist.stretch", "leftWrist.stretch"],
+    for (const key in this.joints) {
 
-      ["rightShoulder.horizontal", "rightShoulder.horizontal"],
-      ["rightShoulder.vertical", "rightShoulder.vertical"],
-      ["rightShoulder.roll", "rightShoulder.roll"],
-      ["rightElbow.stretch", "rightElbow.stretch"],
-      ["rightWrist.roll", "rightWrist.roll"],
-      ["rightWrist.stretch", "rightWrist.stretch"],
-    ];
-
-    for (const [key, jointName] of limbs) {
+      const joint = this.joints[key];
       const value = blackboard.Get(key, 50);
-      const joint = this.joints[jointName];
-      if (!joint) continue;
+
+      if (value === undefined) continue;
+
       joint.SetRotation(this.MapToJoint(joint, value));
     }
   }
