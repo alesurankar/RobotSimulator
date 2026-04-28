@@ -50,17 +50,18 @@ export class UI
     const leftArm = this.CreatePanel("Left Arm", 20, 170);
     const rightArm = this.CreatePanel("Right Arm", 20, 200);
 
-    this.AddButton("Wave", () => {
-      this.engine.PlayMove(Moves.wave);
-    }, movesPanel);
+    const moveButtons = [
+      { label: "Wave", move: Moves.wave },
+      { label: "Punch", move: Moves.punch },
+      { label: "Idle", move: Moves.idle },
+    ];
 
-    this.AddButton("Punch", () => {
-      this.engine.PlayMove(Moves.punch);
-    }, movesPanel);
+    moveButtons.forEach(m => {
+      this.AddButton(m.label, () => {
+        this.engine.PlayMove(m.move);
+      }, movesPanel);
+    });
 
-    this.AddButton("Idle", () => {
-      this.engine.PlayMove(Moves.idle);
-    }, movesPanel);
 
     const controls  = [
       // Locomotion
@@ -78,7 +79,7 @@ export class UI
       { label: "Left Shoulder Vertical", key: "leftShoulder.vertical", min: 10, max: 90, default: 50, panel: leftArm },
       { label: "Left Shoulder Roll", key: "leftShoulder.roll", min: 10, max: 90, default: 50, panel: leftArm },
       { label: "Left Elbow", key: "leftElbow.stretch", min: 50, max: 90, default: 50, panel: leftArm },
-      { label: "Left Wrist Roll", key: "leftWrist.roll", min: 0, max: 55, default: 50, panel: leftArm },
+      { label: "Left Wrist Roll", key: "leftWrist.roll", min: 35, max: 85, default: 50, panel: leftArm },
       { label: "Left Wrist", key: "leftWrist.stretch", min: 35, max: 80, default: 50, panel: leftArm },
 
       // Right Arm
@@ -86,7 +87,7 @@ export class UI
       { label: "Right Shoulder Vertical", key: "rightShoulder.vertical", min: 10, max: 90, default: 50, panel: rightArm },
       { label: "Right Shoulder Roll", key: "rightShoulder.roll", min: 10, max: 90, default: 50, panel: rightArm },
       { label: "Right Elbow", key: "rightElbow.stretch", min: 50, max: 90, default: 50, panel: rightArm },
-      { label: "Right Wrist Roll", key: "rightWrist.roll", min: 0, max: 55, default: 50, panel: rightArm },
+      { label: "Right Wrist Roll", key: "rightWrist.roll", min: 35, max: 85, default: 50, panel: rightArm },
       { label: "Right Wrist", key: "rightWrist.stretch", min: 35, max: 80, default: 50, panel: rightArm },
     ];
     controls.forEach(c => {
