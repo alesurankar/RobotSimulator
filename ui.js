@@ -71,13 +71,22 @@ export class UI
       // Left Leg
       { label: "Left Hip Straight", key: "leftHip.straight", min: 40, max: 90, default: 50, panel: leftLeg },
       { label: "Left Hip Side", key: "leftHip.side", min: 10, max: 60, default: 50, panel: leftLeg },
-      { label: "Left Knee", key: "leftKnee.stretch", min: 8, max: 50, default: 50, panel: leftLeg },
+      { label: "Left Hip Roll", key: "leftHip.roll", min: 40, max: 90, default: 50, panel: leftLeg },
+      { label: "Left Knee Stretch", key: "leftKnee.stretch", min: 8, max: 50, default: 50, panel: leftLeg },
+      { label: "Left Ankle Vertical", key: "leftAnkle.vertical", min: 35, max: 65, default: 50, panel: leftLeg },
+      { label: "Left Ankle Horizontal", key: "leftAnkle.horizontal", min: 40, max: 60, default: 50, panel: leftLeg },
+      { label: "Left Ankle Roll", key: "leftAnkle.roll", min: 47, max: 53, default: 50, panel: leftLeg },
       
       // Right Leg
       { label: "Right Hip Straight", key: "rightHip.straight", min: 40, max: 90, default: 50, panel: rightLeg},
       { label: "Right Hip Side", key: "rightHip.side", min: 10, max: 60, default: 50, panel: rightLeg},
-      { label: "Right Knee", key: "rightKnee.stretch", min: 8, max: 50, default: 50, panel: rightLeg},
-      
+      { label: "Right Hip Roll", key: "rightHip.roll", min: 40, max: 90, default: 50, panel: rightLeg},
+      { label: "Right Knee Stretch", key: "rightKnee.stretch", min: 8, max: 50, default: 50, panel: rightLeg},
+      { label: "Right Ankle Vertical", key: "rightAnkle.vertical", min: 35, max: 65, default: 50, panel: rightLeg },
+      { label: "Right Ankle Horizontal", key: "rightAnkle.horizontal", min: 40, max: 60, default: 50, panel: rightLeg },
+      { label: "Right Ankle Roll", key: "rightAnkle.roll", min: 52, max: 58, default: 55, panel: rightLeg },
+     
+
       // Left Arm
       { label: "Left Shoulder Horizontal", key: "leftShoulder.horizontal", min: 10, max: 90, default: 50, panel: leftArm},
       { label: "Left Shoulder Vertical", key: "leftShoulder.vertical", min: 10, max: 90, default: 50, panel: leftArm },

@@ -68,6 +68,7 @@ export class Robot
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
+        // Shoulder DOF 3
         {
           length: 0,
           axis: new THREE.Vector3(1, 0, 0),
@@ -110,18 +111,24 @@ export class Robot
 
     // ===== LEFT LEG =====
     this.leftLeg = new Limb({
+      // Hip DOF 3
       structure: [
         {
           length: 0,
           axis: new THREE.Vector3(1, 0, 0),
         },
         {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, -1),
+        },
+        {
           length: 5.2,
           width: 0.8,
           depth: 0.9,
           shape: "cylinder",
-          axis: new THREE.Vector3(0, 0, -1),
+          axis: new THREE.Vector3(0, 1, 0),
         },
+        // Knee DOF 1
         {
           length: 4.7,
           width: 0.6,
@@ -129,11 +136,23 @@ export class Robot
           shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
+        // Ankle DOF 3
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, 1),
+          restRotation: new THREE.Euler(0, 0, 0.6)
+        },
+        {
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(0, 0, 0)
+        },
         {
           length: 2,
           width: 0.4,
           depth: 0.8,
-          restRotation: new THREE.Euler(0, 1, Math.PI / 2)
+          axis: new THREE.Vector3(0, 1, 0),
+          restRotation: new THREE.Euler(0, 0, 0)
         }
       ],
       parent: this.torso.root,
@@ -144,17 +163,23 @@ export class Robot
     // ===== RIGHT LEG =====
     this.rightLeg = new Limb({
       structure: [
+        // Hip DOF 3
         {
           length: 0,
           axis: new THREE.Vector3(1, 0, 0),
+        },
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, 1),
         },
         {
           length: 5.2,
           width: 0.8,
           depth: 0.9,
           shape: "cylinder",
-          axis: new THREE.Vector3(0, 0, 1),
+          axis: new THREE.Vector3(0, 1, 0),
         },
+        // Knee DOF 1
         {
           length: 4.7,
           width: 0.6,
@@ -162,11 +187,23 @@ export class Robot
           shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
         },
+        // Ankle 3 DOF
+        {
+          length: 0,
+          axis: new THREE.Vector3(0, 0, -1),
+          restRotation: new THREE.Euler(0, 0, -1)
+        },
+        {
+          length: 0,
+          axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(0.6, 0, 0)
+        },
         {
           length: 2,
           width: 0.4,
           depth: 0.8,
-          restRotation: new THREE.Euler(0, 2, Math.PI / 2)
+          axis: new THREE.Vector3(0, 1, 0),
+          restRotation: new THREE.Euler(0, -0.4, 0)
         }
       ],
       parent: this.torso.root,

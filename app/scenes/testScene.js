@@ -35,11 +35,19 @@ export class TestScene extends BaseScene
     // Legs 
     this.poseSystem.RegisterJoint("leftHip.straight", this.robot.leftLeg.joints[0]);
     this.poseSystem.RegisterJoint("leftHip.side", this.robot.leftLeg.joints[1]);
-    this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[2]);
+    this.poseSystem.RegisterJoint("leftHip.roll", this.robot.leftLeg.joints[2]);
+    this.poseSystem.RegisterJoint("leftKnee.stretch", this.robot.leftLeg.joints[3]);
+    this.poseSystem.RegisterJoint("leftAnkle.vertical", this.robot.leftLeg.joints[4]);
+    this.poseSystem.RegisterJoint("leftAnkle.horizontal", this.robot.leftLeg.joints[5]);
+    this.poseSystem.RegisterJoint("leftAnkle.roll", this.robot.leftLeg.joints[6]);
 
     this.poseSystem.RegisterJoint("rightHip.straight", this.robot.rightLeg.joints[0]);
     this.poseSystem.RegisterJoint("rightHip.side", this.robot.rightLeg.joints[1]);
-    this.poseSystem.RegisterJoint("rightKnee.stretch", this.robot.rightLeg.joints[2]);
+    this.poseSystem.RegisterJoint("rightHip.roll", this.robot.rightLeg.joints[2]);
+    this.poseSystem.RegisterJoint("rightKnee.stretch", this.robot.rightLeg.joints[3]);
+    this.poseSystem.RegisterJoint("rightAnkle.vertical", this.robot.rightLeg.joints[4]);
+    this.poseSystem.RegisterJoint("rightAnkle.horizontal", this.robot.rightLeg.joints[5]);
+    this.poseSystem.RegisterJoint("rightAnkle.roll", this.robot.rightLeg.joints[6]);
     
     // Arms
     this.poseSystem.RegisterJoint("leftShoulder.horizontal", this.robot.leftArm.joints[0]);
