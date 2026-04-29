@@ -11,12 +11,18 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
+        { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 2.0, width: 1.6, depth: 1.6, shape: "sphere", jointRadius: 0.6},
+        { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1.6, width: 0.8, depth: 0.8, shape: "cylinder", jointRadius: 0.5},
+        { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1.6, width: 1.2, depth: 0.8, shape: "cylinder", jointRadius: 0.5},
+        { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1.6, width: 2.4, depth: 2.4, shape: "sphere", jointRadius: 0.7},
+        { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1, width: 0.6, depth: 0.6 },
-        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere", jointRadius: 0.8 }
+        { length: 0, axis: new THREE.Vector3(1, 0, 0)},
+        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere", jointRadius: 0.8 },
       ],
       parent: this.model
     });
@@ -63,7 +69,7 @@ export class Robot
           jointRadius: 0.35
         }
       ],
-      parent: this.torso.joints[4].pivot,
+      parent: this.torso.joints[9].pivot,
       rotation: new THREE.Euler(0, 0, -2.6),
       position: new THREE.Vector3(1, 0, 0) 
     });
@@ -110,7 +116,7 @@ export class Robot
           jointRadius: 0.35
         }
       ],
-      parent: this.torso.joints[4].pivot,
+      parent: this.torso.joints[9].pivot,
       rotation: new THREE.Euler(0, 0, 2.6),
       position: new THREE.Vector3(-1, 0, 0)
     });

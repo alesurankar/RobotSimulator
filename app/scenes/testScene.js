@@ -32,6 +32,20 @@ export class TestScene extends BaseScene
     this.poseSystem = new PoseSystem(this.robot);
     this.animator = new Animator();
 
+    // Spine
+    this.poseSystem.RegisterJoint("spine_0.straight", this.robot.torso.joints[0]);
+    this.poseSystem.RegisterJoint("spine_0.side", this.robot.torso.joints[1]);
+    this.poseSystem.RegisterJoint("spine_1.straight", this.robot.torso.joints[2]);
+    this.poseSystem.RegisterJoint("spine_1.side", this.robot.torso.joints[3]);
+    this.poseSystem.RegisterJoint("spine_2.straight", this.robot.torso.joints[4]);
+    this.poseSystem.RegisterJoint("spine_2.side", this.robot.torso.joints[5]);
+    this.poseSystem.RegisterJoint("spine_3.straight", this.robot.torso.joints[6]);
+    this.poseSystem.RegisterJoint("spine_3.side", this.robot.torso.joints[7]);
+    this.poseSystem.RegisterJoint("spine_4.straight", this.robot.torso.joints[8]);
+    this.poseSystem.RegisterJoint("spine_4.side", this.robot.torso.joints[9]);
+    this.poseSystem.RegisterJoint("spine_5.straight", this.robot.torso.joints[10]);
+    this.poseSystem.RegisterJoint("spine_5.side", this.robot.torso.joints[11]);
+
     // Legs 
     this.poseSystem.RegisterJoint("leftHip.straight", this.robot.leftLeg.joints[0]);
     this.poseSystem.RegisterJoint("leftHip.side", this.robot.leftLeg.joints[1]);

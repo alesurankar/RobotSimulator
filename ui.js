@@ -45,10 +45,11 @@ export class UI
 
     const movesPanel = this.CreatePanel("Moves", 20, 50);
     const locomotion = this.CreatePanel("Locomotion", 20, 80);
-    const leftLeg = this.CreatePanel("Left Leg", 20, 110);
-    const rightLeg = this.CreatePanel("Right Leg", 20, 140);
-    const leftArm = this.CreatePanel("Left Arm", 20, 170);
-    const rightArm = this.CreatePanel("Right Arm", 20, 200);
+    const torso = this.CreatePanel("Torso", 20, 110);
+    const leftLeg = this.CreatePanel("Left Leg", 20, 140);
+    const rightLeg = this.CreatePanel("Right Leg", 20, 170);
+    const leftArm = this.CreatePanel("Left Arm", 20, 200);
+    const rightArm = this.CreatePanel("Right Arm", 20, 230);
 
     const moveButtons = [
       { label: "Wave", move: Moves.wave },
@@ -67,6 +68,20 @@ export class UI
       // Locomotion
       { label: "Rotate Speed", key: "locomotion.rotateSpeed", min: 0, max: 5, default: 0, panel: locomotion },
       { label: "Move Speed", key: "locomotion.moveSpeed", min: 0, max: 10, default: 0, panel: locomotion },
+
+      // Spine
+      { label: "Spine_0 Straight", key: "spine_0.straight", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_0 Side", key: "spine_0.side", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_1 Straight", key: "spine_1.straight", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_1 Side", key: "spine_1.side", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_2 Straight", key: "spine_2.straight", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_2 Side", key: "spine_2.side", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_3 Straight", key: "spine_3.straight", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_3 Side", key: "spine_3.side", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_4 Straight", key: "spine_4.straight", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_4 Side", key: "spine_4.side", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_5 Straight", key: "spine_5.straight", min: 40, max: 90, default: 50, panel: torso },
+      { label: "Spine_5 Side", key: "spine_5.side", min: 40, max: 90, default: 50, panel: torso },
 
       // Left Leg
       { label: "Left Hip Straight", key: "leftHip.straight", min: 40, max: 90, default: 50, panel: leftLeg },
