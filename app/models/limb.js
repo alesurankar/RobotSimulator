@@ -11,6 +11,7 @@ export class Limb
     axis = new THREE.Vector3(0, 0, 1),
     position = new THREE.Vector3(),
     rotation = new THREE.Euler(),
+    jointRadius,
   } = {}) 
   {
     this.root = new THREE.Group();
@@ -32,7 +33,8 @@ export class Limb
         axis: segment.axis ?? axis,
         restRotation: segment.restRotation ?? new THREE.Euler(),
         minAngle: segment.min ?? -Math.PI,
-        maxAngle: segment.max ?? Math.PI
+        maxAngle: segment.max ?? Math.PI,
+        radius: segment.jointRadius
       });
       this.joints.push(joint);
 
@@ -41,7 +43,6 @@ export class Limb
         length: segment.length,
         width: segment.width ?? 0.5,
         depth: segment.depth ?? 0.5,
-        color: segment.color ?? 0xC9B903,
         shape: segment.shape,
         parent: joint.pivot
       });

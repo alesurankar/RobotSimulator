@@ -70,7 +70,7 @@ export class TestScene extends BaseScene
     );
 
     ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.01;
+    ground.position.y = -4.01;
     ground.receiveShadow = true;
 
     this.scene.add(ground);

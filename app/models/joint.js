@@ -9,6 +9,8 @@ export class Joint
     restRotation = new THREE.Euler(),
     minAngle = -Math.PI,
     maxAngle = Math.PI,
+    radius = 0.1,
+    color = 0x444444,
   } = {}) 
   {
     this.axis = axis;
@@ -20,8 +22,8 @@ export class Joint
     this.pivot = new THREE.Group();
 
     this.body = new THREE.Mesh(
-      new THREE.SphereGeometry(0.55, 16, 16),
-      new THREE.MeshStandardMaterial({ color: 0xff0000 })
+      new THREE.SphereGeometry(radius, 16, 16),
+      new THREE.MeshStandardMaterial({ color })
     );
     this.body.castShadow = true;
     this.body.receiveShadow = true;

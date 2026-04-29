@@ -11,12 +11,12 @@ export class Robot
     
     this.torso = new Limb({
       structure: [
-        { length: 2.0, width: 1.6, depth: 1.6, shape: "sphere"},
-        { length: 1.6, width: 0.8, depth: 0.8, shape: "cylinder"},
-        { length: 1.6, width: 1.2, depth: 0.8, shape: "cylinder"},
-        { length: 1.6, width: 2.4, depth: 2.4, shape: "sphere"},
-        { length: 1, width: 0.6, depth: 0.6, },
-        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere" }
+        { length: 2.0, width: 1.6, depth: 1.6, shape: "sphere", jointRadius: 0.6},
+        { length: 1.6, width: 0.8, depth: 0.8, shape: "cylinder", jointRadius: 0.5},
+        { length: 1.6, width: 1.2, depth: 0.8, shape: "cylinder", jointRadius: 0.5},
+        { length: 1.6, width: 2.4, depth: 2.4, shape: "sphere", jointRadius: 0.7},
+        { length: 1, width: 0.6, depth: 0.6 },
+        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere", jointRadius: 0.8 }
       ],
       parent: this.model
     });
@@ -39,6 +39,7 @@ export class Robot
           depth: 0.6,
           shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
+          jointRadius: 0.6
         },
         // Arm DOF 1
         {
@@ -47,6 +48,7 @@ export class Robot
           depth: 0.6,
           shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
+          jointRadius: 0.5
         },
         // Hand DOF 2
         {
@@ -54,10 +56,11 @@ export class Robot
           axis: new THREE.Vector3(0, 1, 0),
         },
         {
-          length: 2,
+          length: 1.2,
           width: 1.2,
-          depth: 0.4,
+          depth: 0.35,
           axis: new THREE.Vector3(1, 0, 0),
+          jointRadius: 0.35
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -83,6 +86,7 @@ export class Robot
           depth: 0.6,
           shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
+          jointRadius: 0.6
         },
         // Arm DOF 1
         {
@@ -91,6 +95,7 @@ export class Robot
           depth: 0.6,
           shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
+          jointRadius: 0.5
         },
         // Hand DOF 2
         {
@@ -98,10 +103,11 @@ export class Robot
           axis: new THREE.Vector3(0, 1, 0),
         },
         {
-          length: 2,
+          length: 1.2,
           width: 1.2,
-          depth: 0.4,
+          depth: 0.35,
           axis: new THREE.Vector3(1, 0, 0),
+          jointRadius: 0.35
         }
       ],
       parent: this.torso.joints[4].pivot,
@@ -127,6 +133,7 @@ export class Robot
           depth: 0.9,
           shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
+          jointRadius: 0.7
         },
         // Knee DOF 1
         {
@@ -135,29 +142,29 @@ export class Robot
           depth: 0.8,
           shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
+          jointRadius: 0.6
         },
         // Ankle DOF 3
         {
           length: 0,
-          axis: new THREE.Vector3(0, 0, 1),
-          restRotation: new THREE.Euler(0, 0, 0.6)
+          axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(1.55, 0, 0)
         },
         {
           length: 0,
-          axis: new THREE.Vector3(1, 0, 0),
-          restRotation: new THREE.Euler(0, 0, 0)
+          axis: new THREE.Vector3(0, 0, -1),
         },
         {
           length: 2,
-          width: 0.4,
-          depth: 0.8,
+          width: 0.8,
+          depth: 0.4,
           axis: new THREE.Vector3(0, 1, 0),
-          restRotation: new THREE.Euler(0, 0, 0)
+          jointRadius: 0.35
         }
       ],
       parent: this.torso.root,
-      rotation: new THREE.Euler(0, 0, -3),
-      position: new THREE.Vector3(1, 0, 0) 
+      rotation: new THREE.Euler(0, 0, -3.1),
+      position: new THREE.Vector3(1.2, 0, 0) 
     });
 
     // ===== RIGHT LEG =====
@@ -166,7 +173,7 @@ export class Robot
         // Hip DOF 3
         {
           length: 0,
-          axis: new THREE.Vector3(1, 0, 0),
+          axis: new THREE.Vector3(1, 0, 0)
         },
         {
           length: 0,
@@ -178,6 +185,7 @@ export class Robot
           depth: 0.9,
           shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
+          jointRadius: 0.7
         },
         // Knee DOF 1
         {
@@ -186,29 +194,29 @@ export class Robot
           depth: 0.8,
           shape: "cylinder",
           axis: new THREE.Vector3(1, 0, 0),
+          jointRadius: 0.6
         },
         // Ankle 3 DOF
         {
           length: 0,
-          axis: new THREE.Vector3(0, 0, -1),
-          restRotation: new THREE.Euler(0, 0, -1)
+          axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(1.55, 0, 0)
         },
         {
           length: 0,
-          axis: new THREE.Vector3(1, 0, 0),
-          restRotation: new THREE.Euler(0.6, 0, 0)
+          axis: new THREE.Vector3(0, 0, 1)
         },
         {
           length: 2,
-          width: 0.4,
-          depth: 0.8,
+          width: 0.8,
+          depth: 0.4,
           axis: new THREE.Vector3(0, 1, 0),
-          restRotation: new THREE.Euler(0, -0.4, 0)
+          jointRadius: 0.35
         }
       ],
       parent: this.torso.root,
-      rotation: new THREE.Euler(0, 0, 3),
-      position: new THREE.Vector3(-1, 0, 0)
+      rotation: new THREE.Euler(0, 0, 3.1),
+      position: new THREE.Vector3(-1.2, 0, 0)
     });
     
     this.model.position.y = 10;

@@ -7,7 +7,7 @@ export class Link
     length = 5,
     width = 0.5,
     depth = 0.5,
-    color = 0xC9B903,
+    color = 0x999999,
     shape = null,
     parent = null,
   } = {}) 
