@@ -103,6 +103,8 @@ export class UI
      
 
       // Left Arm
+      { label: "Left ShoulderBase Horizontal", key: "leftShoulderBase.horizontal", min: 10, max: 90, default: 50, panel: leftArm},
+      { label: "Left ShoulderBase Vertical", key: "leftShoulderBase.vertical", min: 10, max: 90, default: 50, panel: leftArm},
       { label: "Left Shoulder Horizontal", key: "leftShoulder.horizontal", min: 10, max: 90, default: 50, panel: leftArm},
       { label: "Left Shoulder Vertical", key: "leftShoulder.vertical", min: 10, max: 90, default: 50, panel: leftArm },
       { label: "Left Shoulder Roll", key: "leftShoulder.roll", min: 10, max: 90, default: 50, panel: leftArm },
@@ -111,6 +113,8 @@ export class UI
       { label: "Left Wrist", key: "leftWrist.stretch", min: 35, max: 80, default: 50, panel: leftArm },
 
       // Right Arm
+      { label: "Right ShoulderBase Horizontal", key: "rightShoulderBase.horizontal", min: 10, max: 90, default: 50, panel: rightArm },
+      { label: "Right ShoulderBase Vertical", key: "rightShoulderBase.vertical", min: 10, max: 90, default: 50, panel: rightArm },
       { label: "Right Shoulder Horizontal", key: "rightShoulder.horizontal", min: 10, max: 90, default: 50, panel: rightArm },
       { label: "Right Shoulder Vertical", key: "rightShoulder.vertical", min: 10, max: 90, default: 50, panel: rightArm },
       { label: "Right Shoulder Roll", key: "rightShoulder.roll", min: 10, max: 90, default: 50, panel: rightArm },

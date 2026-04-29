@@ -14,11 +14,11 @@ export class Robot
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 2.0, width: 1.6, depth: 1.6, shape: "sphere", jointRadius: 0.6},
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
-        { length: 1.6, width: 0.8, depth: 0.8, shape: "cylinder", jointRadius: 0.5},
+        { length: 1.6, width: 1, depth: 1, shape: "cylinder", jointRadius: 0.8},
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
-        { length: 1.6, width: 1.2, depth: 0.8, shape: "cylinder", jointRadius: 0.5},
+        { length: 1.6, width: 1.8, depth: 1.4, shape: "cylinder", jointRadius: 0.8},
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
-        { length: 1.6, width: 2.4, depth: 2.4, shape: "sphere", jointRadius: 0.7},
+        { length: 1.6, width: 2.2, depth: 2.2, shape: "cylinder", jointRadius: 1.1},
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1, width: 0.6, depth: 0.6 },
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
@@ -30,10 +30,25 @@ export class Robot
     // ===== LEFT ARM =====
     this.leftArm = new Limb({
       structure: [
+        // Shoulder Base DOF 2
+        {
+          length: 0.3,
+          axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(0, 0, -Math.PI/2),
+        },
+        {
+          length: 1.7,
+          width: 1,
+          depth: 2,
+          shape: "cylinder",
+          axis: new THREE.Vector3(0, 0, 1),
+          jointRadius: 1.2
+        },
         // Shoulder DOF 3
         {
           length: 0,
           axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(0, 0, -Math.PI/3),
         },
         {
           length: 0,
@@ -42,10 +57,10 @@ export class Robot
         {
           length: 3.8,
           width: 0.6,
-          depth: 0.6,
+          depth: 0.8,
           shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
-          jointRadius: 0.6
+          jointRadius: 0.7
         },
         // Arm DOF 1
         {
@@ -70,17 +85,30 @@ export class Robot
         }
       ],
       parent: this.torso.joints[9].pivot,
-      rotation: new THREE.Euler(0, 0, -2.6),
-      position: new THREE.Vector3(1, 0, 0) 
     });
 
     // ===== RIGHT ARM =====
     this.rightArm = new Limb({
       structure: [
+        // Shoulder Base DOF 2
+        {
+          length: 0.3,
+          axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(0, 0, Math.PI/2),
+        },
+        {
+          length: 1.7,
+          width: 1,
+          depth: 2,
+          shape: "cylinder",
+          axis: new THREE.Vector3(0, 0, 1),
+          jointRadius: 1.2
+        },
         // Shoulder DOF 3
         {
           length: 0,
           axis: new THREE.Vector3(1, 0, 0),
+          restRotation: new THREE.Euler(0, 0, Math.PI/3),
         },
         {
           length: 0,
@@ -89,10 +117,10 @@ export class Robot
         {
           length: 3.8,
           width: 0.6,
-          depth: 0.6,
+          depth: 0.8,
           shape: "cylinder",
           axis: new THREE.Vector3(0, 1, 0),
-          jointRadius: 0.6
+          jointRadius: 0.7
         },
         // Arm DOF 1
         {
@@ -117,8 +145,6 @@ export class Robot
         }
       ],
       parent: this.torso.joints[9].pivot,
-      rotation: new THREE.Euler(0, 0, 2.6),
-      position: new THREE.Vector3(-1, 0, 0)
     });
 
     // ===== LEFT LEG =====
