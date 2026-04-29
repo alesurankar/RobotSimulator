@@ -1,4 +1,11 @@
 export const Moves = {
+  bend: {
+    pose: {
+      torso: {}
+    },
+    duration: 0.8
+  },
+
   wave: {
     pose: {
       leftShoulder: { horizontal: 45, vertical: 65, roll: 30 },

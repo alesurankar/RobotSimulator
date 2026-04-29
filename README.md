@@ -45,6 +45,9 @@ UI
 ```text
 RobotSimulator/
 ├─ app/
+│   ├─ ik_solver/
+│   │   └─ simpleLegIK.js
+│   │
 │   ├─ input/
 │   │   ├─ desktopInput.js
 │   │   ├─ inputStare.js

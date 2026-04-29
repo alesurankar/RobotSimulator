@@ -18,11 +18,11 @@ export class Robot
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1.6, width: 1.8, depth: 1.4, shape: "cylinder", jointRadius: 0.8},
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
-        { length: 1.6, width: 2.2, depth: 2.2, shape: "cylinder", jointRadius: 1.1},
+        { length: 1.6, width: 2.2, depth: 2.0, shape: "cylinder", jointRadius: 1.0},
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
         { length: 1, width: 0.6, depth: 0.6 },
         { length: 0, axis: new THREE.Vector3(1, 0, 0)},
-        { length: 2.7, width: 4.0, depth: 4.0, shape: "sphere", jointRadius: 0.8 },
+        { length: 2.6, width: 3.9, depth: 3.9, shape: "sphere", jointRadius: 0.8 },
       ],
       parent: this.model
     });

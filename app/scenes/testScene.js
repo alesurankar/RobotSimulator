@@ -4,6 +4,7 @@ import { Robot } from "../models/robot.js";
 import { Locomotion } from "../../core/locomotion.js";
 import { PoseSystem } from "../../core/poseSystem.js";
 import { Animator } from "../moves/animate.js";
+import { SimpleLegIK } from "../ik_solver/simpleLegIK.js";
 
 
 export class TestScene extends BaseScene
@@ -20,6 +21,8 @@ export class TestScene extends BaseScene
     this.poseSystem = null;
     this.animator = null;
     this.robot = null;
+    this.ik = new SimpleLegIK(4, 4);
+    this.ikTarget = new THREE.Vector2(10, 1);
   }
 
   CreateObjects()
@@ -99,6 +102,7 @@ export class TestScene extends BaseScene
   {
     super.Update(dt, blackboard);
     this.animator.Update(dt, blackboard);
+    this.ik.Update(dt, blackboard, this.ikTarget);
     this.locomotion.Update(dt, blackboard);
     this.poseSystem.Update(dt, blackboard);
   }
