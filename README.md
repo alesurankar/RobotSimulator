@@ -58,6 +58,8 @@ RobotSimulator/
 │   │   │  ├─ joint.js
 │   │   │  ├─ limb.js
 │   │   │  └─ link.js
+│   │   ├─ poseBinder.js
+│   │   ├─ poseDefinition.js
 │   │   ├─ robot.js
 │   │   └─ segmentFactory.js
 │   │

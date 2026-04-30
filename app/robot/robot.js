@@ -9,11 +9,9 @@ export class Robot
     this.root = new THREE.Group();
     this.model = new THREE.Group();
     this.root.add(this.model);
-    this.animator = null;
-    
-    this.animator = new Animator();
-    
     this.limbs = {};
+    this.animator = new Animator();
+
     this.torso = Segment.CreateTorso();
     this.leftArm = Segment.CreateLeftArm();
     this.rightArm = Segment.CreateRightArm();
@@ -32,13 +30,6 @@ export class Robot
     this.rightLeg.root.rotation.set(0, 0, 3.1);
 
     this.model.position.y = 10;
-
-    this.limbs = {
-      leftLeg: this.leftLeg,
-      rightLeg: this.rightLeg,
-      leftArm: this.leftArm,
-      rightArm: this.rightArm
-    };
   }
 
   AddLimb(name, limb, parent) 
@@ -47,13 +38,15 @@ export class Robot
     this.limbs[name] = limb;
   }
 
-  RegisterPoseSystem(poseSystem)
+  GetLimbs()
   {
-    this.torso.Register("torso", poseSystem);
-    this.leftArm.Register("leftArm", poseSystem);
-    this.rightArm.Register("rightArm", poseSystem);
-    this.leftLeg.Register("leftLeg", poseSystem);
-    this.rightLeg.Register("rightLeg", poseSystem);
+    return {
+      torso: this.torso,
+      leftArm: this.leftArm,
+      rightArm: this.rightArm,
+      leftLeg: this.leftLeg,
+      rightLeg: this.rightLeg,
+    };
   }
 
   SetPosition(x, y, z)

@@ -12,6 +12,7 @@ export class Limb
     position = new THREE.Vector3(),
     rotation = new THREE.Euler(),
     jointRadius,
+
   } = {}) 
   {
     this.root = new THREE.Group();
@@ -20,6 +21,7 @@ export class Limb
     parent?.add(this.root);
 
     this.joints = [];
+    this.jointsByName = {};
     this.links = [];
 
     let currentParent = this.root;
@@ -37,6 +39,10 @@ export class Limb
         radius: segment.jointRadius
       });
       this.joints.push(joint);
+      
+      if (segment.name) {
+        this.jointsByName[segment.name] = joint;
+      }
 
       // LINK
       const link = new Link({
