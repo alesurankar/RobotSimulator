@@ -62,7 +62,6 @@ RobotSimulator/
 │   │   └─ segmentFactory.js
 │   │
 │   ├─ moves/
-│   │   ├─ animate.js
 │   │   └─ moves.js
 │   │
 │   ├─ scenes/
@@ -77,6 +76,7 @@ RobotSimulator/
 │       └─ skyBox.js
 │
 ├─ core/
+│   ├─ animator.js
 │   ├─ blackboard.js
 │   ├─ locomotion.js
 │   └─ poseSystem.js

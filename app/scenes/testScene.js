@@ -3,7 +3,6 @@ import { BaseScene } from "./baseScene.js"
 import { Robot } from "../robot/robot.js";
 import { Locomotion } from "../../core/locomotion.js";
 import { PoseSystem } from "../../core/poseSystem.js";
-import { Animator } from "../moves/animate.js";
 import { SimpleLegIK } from "../ik_solver/simpleLegIK.js";
 
 
@@ -19,7 +18,6 @@ export class TestScene extends BaseScene
     };
     this.locomotion = null;
     this.poseSystem = null;
-    this.animator = null;
     this.robot = null;
     this.ik = new SimpleLegIK(4, 4);
     this.ikTarget = new THREE.Vector2(10, 1);
@@ -33,7 +31,6 @@ export class TestScene extends BaseScene
 
     this.locomotion = new Locomotion(this.robot);
     this.poseSystem = new PoseSystem(this.robot);
-    this.animator = new Animator();
 
     // Spine
     this.poseSystem.RegisterJoint("spine_0.straight", this.robot.torso.joints[0]);
@@ -101,7 +98,7 @@ export class TestScene extends BaseScene
   Update(dt, blackboard) 
   {
     super.Update(dt, blackboard);
-    this.animator.Update(dt, blackboard);
+    this.robot.animator.Update(dt, blackboard);
     this.ik.Update(dt, blackboard, this.ikTarget);
     this.locomotion.Update(dt, blackboard);
     this.poseSystem.Update(dt, blackboard);

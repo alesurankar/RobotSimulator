@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { Animator } from "../../core/animator.js";
 import * as Segment from "./segmentFactory.js"
 
 export class Robot
@@ -8,6 +9,9 @@ export class Robot
     this.root = new THREE.Group();
     this.model = new THREE.Group();
     this.root.add(this.model);
+    this.animator = null;
+    
+    this.animator = new Animator();
     
     this.limbs = {};
     this.torso = Segment.CreateTorso();
