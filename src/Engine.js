@@ -57,9 +57,13 @@ export class Engine
 
   PlayMove(move, duration) 
   {
-    //console.log("PlayMove triggered", move);
     const flat = this.FlattenPose(move.pose);
-    this.scene?.animator?.Play(flat, move.duration);
+
+    this.scene?.robot?.animator?.Play(
+      flat,
+      move.duration,
+      this.blackboard
+    );
   }
 
   FlattenPose(pose, prefix = "", out = {})
