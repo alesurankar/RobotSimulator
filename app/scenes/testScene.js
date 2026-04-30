@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { BaseScene } from "./baseScene.js"
-import { Robot } from "../models/robot.js";
+import { Robot } from "../robot/robot.js";
 import { Locomotion } from "../../core/locomotion.js";
 import { PoseSystem } from "../../core/poseSystem.js";
 import { Animator } from "../moves/animate.js";

@@ -53,11 +53,13 @@ RobotSimulator/
 │   │   ├─ inputStare.js
 │   │   └─ mobileInjput.js
 │   │
-│   ├─ models/
-│   │   ├─ joint.js
-│   │   ├─ limb.js
-│   │   ├─ link.js
-│   │   └─ robot.js
+│   ├─ robot/
+│   │   ├─ models/
+│   │   │  ├─ joint.js
+│   │   │  ├─ limb.js
+│   │   │  └─ link.js
+│   │   ├─ robot.js
+│   │   └─ segmentFactory.js
 │   │
 │   ├─ moves/
 │   │   ├─ animate.js
