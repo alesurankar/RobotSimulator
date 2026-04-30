@@ -101,7 +101,6 @@ export class UI
       { label: "Right Ankle Horizontal", key: "rightAnkle.horizontal", min: 40, max: 60, default: 50, panel: rightLeg },
       { label: "Right Ankle Roll", key: "rightAnkle.roll", min: 52, max: 58, default: 55, panel: rightLeg },
      
-
       // Left Arm
       { label: "Left ShoulderBase Horizontal", key: "leftShoulderBase.horizontal", min: 10, max: 90, default: 50, panel: leftArm},
       { label: "Left ShoulderBase Vertical", key: "leftShoulderBase.vertical", min: 10, max: 90, default: 50, panel: leftArm},
@@ -154,6 +153,7 @@ export class UI
       const v = Number(e.target.value);
       text.textContent = `${label}: ${v}`;
       onInput(v);
+      //console.log("UI WRITE:", label, v);
     };
 
     container.appendChild(text);

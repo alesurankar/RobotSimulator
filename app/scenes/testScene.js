@@ -4,6 +4,7 @@ import { Robot } from "../robot/robot.js";
 import { Locomotion } from "../../core/locomotion.js";
 import { PoseSystem } from "../../core/poseSystem.js";
 import { SimpleLegIK } from "../ik_solver/simpleLegIK.js";
+import { BindPose } from "../robot/poseBinder.js";
 
 
 export class TestScene extends BaseScene
@@ -31,8 +32,7 @@ export class TestScene extends BaseScene
 
     this.locomotion = new Locomotion(this.robot);
     this.poseSystem = new PoseSystem(this.robot);
-
-    
+    BindPose(this.robot, this.poseSystem); 
 
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100),
@@ -48,6 +48,7 @@ export class TestScene extends BaseScene
 
   Update(dt, blackboard) 
   {
+    //console.log("TESTSCENE UPDATE");
     super.Update(dt, blackboard);
     this.robot.animator.Update(dt, blackboard);
     this.ik.Update(dt, blackboard, this.ikTarget);

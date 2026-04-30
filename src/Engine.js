@@ -43,6 +43,7 @@ export class Engine
     while (this.accumulator >= this.FIXED_DT) {
       this.gameControls.Update();
       SceneUpdate(this.FIXED_DT, this.blackboard);
+      //console.log("BLACKBOARD:", this.blackboard.values);
       this.accumulator -= this.FIXED_DT;
     }
     Renderer.render(Scene, Camera);
@@ -56,7 +57,7 @@ export class Engine
 
   PlayMove(move, duration) 
   {
-    console.log("PlayMove triggered", move);
+    //console.log("PlayMove triggered", move);
     const flat = this.FlattenPose(move.pose);
     this.scene?.animator?.Play(flat, move.duration);
   }

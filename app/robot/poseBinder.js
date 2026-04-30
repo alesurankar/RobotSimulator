@@ -1,4 +1,4 @@
-function BindPose(robot, poseSystem) 
+export function BindPose(robot, poseSystem) 
 {
   const map = {
     // Spine

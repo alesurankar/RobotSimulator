@@ -7,6 +7,7 @@ export class PoseSystem
   {
     this.robot = robot;
     this.joints = {};
+    //console.log("PoseSystem created", this);
   }
 
   RegisterJoint(name, joint)
@@ -27,14 +28,15 @@ export class PoseSystem
 
   Update(dt, blackboard) 
   {
+    //console.log("JOINT COUNT:", Object.keys(this.joints).length);
     for (const key in this.joints) {
 
       const joint = this.joints[key];
       const value = blackboard.Get(key, 50);
 
-      if (value === undefined) continue;
-
-      joint.SetRotation(this.MapToJoint(joint, value));
+      const angle = this.MapToJoint(joint, value);
+      //console.log(key, value, angle);
+      joint.SetRotation(angle);
     }
   }
 }
