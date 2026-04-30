@@ -7,18 +7,14 @@ export class Joint
     parent = null,
     axis = new THREE.Vector3(0, 0, 1),
     restRotation = new THREE.Euler(),
-    minAngle = -Math.PI,
-    maxAngle = Math.PI,
     radius = 0.1,
     color = 0x444444,
   } = {}) 
   {
     this.axis = axis;
     this.restRotation = restRotation;
-    this.minAngle = minAngle;
-    this.maxAngle = maxAngle;
 
-    this.angle = 0;
+    this.offset = 0;
     this.pivot = new THREE.Group();
 
     this.body = new THREE.Mesh(
@@ -36,22 +32,17 @@ export class Joint
   ApplyRotation() 
   {
     const restQuat = new THREE.Quaternion().setFromEuler(this.restRotation);
-    const worldAxis = this.axis.clone();
-
     const animQuat = new THREE.Quaternion().setFromAxisAngle(
-      worldAxis,
-      this.angle
+      this.axis,
+      this.offset
     );
+
     this.pivot.quaternion.copy(restQuat).multiply(animQuat);
   }
 
-  SetRotation(angle) 
+  SetOffset(value) 
   {
-    this.angle = THREE.MathUtils.clamp(
-      angle,
-      this.minAngle,
-      this.maxAngle
-    );
+    this.offset = value;
     this.ApplyRotation();
   }
 

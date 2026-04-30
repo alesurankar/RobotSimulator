@@ -86,10 +86,6 @@ export class Robot
     this.root.rotateZ(angle);
   }
 
-  Update(dt, blackboard)
-  {
-  }
-
   Dispose()
   {
     this.torso.Dispose();

@@ -9,8 +9,9 @@ export class Animator
   {
     const startPose = {};
 
-    for (const key in targetPose)
+    for (const key in targetPose) {
       startPose[key] = blackboard.Get(key, 0);
+    }
 
     this.active = {
       start: startPose,

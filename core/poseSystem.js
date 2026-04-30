@@ -18,25 +18,18 @@ export class PoseSystem
   MapToJoint(joint, value)
   {
     const t = THREE.MathUtils.clamp((value - 50) / 50, -1, 1);
-
-    return THREE.MathUtils.lerp(
-      joint.minAngle,
-      joint.maxAngle,
-      (t + 1) / 2
-    );
+    return t;
   }
 
   Update(dt, blackboard) 
   {
-    //console.log("JOINT COUNT:", Object.keys(this.joints).length);
     for (const key in this.joints) {
-
       const joint = this.joints[key];
       const value = blackboard.Get(key, 50);
+      const t = (value - 50) / 50;
+      const offset = t * 1.0;
 
-      const angle = this.MapToJoint(joint, value);
-      //console.log(key, value, angle);
-      joint.SetRotation(angle);
+      joint.SetOffset(offset);
     }
   }
 }

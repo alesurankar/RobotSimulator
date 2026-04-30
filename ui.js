@@ -38,11 +38,6 @@ export class UI
   Build()
   {
     const system = this.CreatePanel("System", 20, 20);
-
-    this.AddButton("Lock", () => {
-      this.engine.ToggleLock();
-    }, system);
-
     const movesPanel = this.CreatePanel("Moves", 20, 50);
     const locomotion = this.CreatePanel("Locomotion", 20, 80);
     const torso = this.CreatePanel("Torso", 20, 110);
@@ -50,6 +45,10 @@ export class UI
     const rightLeg = this.CreatePanel("Right Leg", 20, 170);
     const leftArm = this.CreatePanel("Left Arm", 20, 200);
     const rightArm = this.CreatePanel("Right Arm", 20, 230);
+
+    this.AddButton("Lock", () => {
+      this.engine.ToggleLock();
+    }, system);
 
     const moveButtons = [
       { label: "Wave", move: Moves.wave },
@@ -62,7 +61,6 @@ export class UI
         this.engine.PlayMove(m.move);
       }, movesPanel);
     });
-
 
     const controls  = [
       // Locomotion
